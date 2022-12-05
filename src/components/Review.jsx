@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReview } from "./api";
+import { getCommentsByReview, getReview } from "./api";
 
 const Review = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [reviewLoading, setReviewLoading] = useState(true);
+  const [commentsLoading, setCommentsLoading] = useState(true);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    setReviewLoading(true);
+    setCommentsLoading(true);
+
     getReview(review_id).then((response) => {
       setReview(response);
       setReviewLoading(false);
+    });
+    getCommentsByReview(review_id).then((response) => {
+      setComments(response);
+      setCommentsLoading(false);
     });
   }, []);
 
@@ -37,6 +46,29 @@ const Review = () => {
           <p>Votes: {review.votes}</p>
         </section>
       </section>
+      {commentsLoading ? (
+        <p>Loading Comments...</p>
+      ) : (
+        <section className="Comments">
+          <h3>Comments</h3>
+          {comments.length < 1 ? (
+            <p>There are no comments yet!</p>
+          ) : (
+            <ul className="Comments--List">
+              {comments.map((comment) => {
+                return (
+                  <li key={comment.comment_id}>
+                    <h4>{comment.author}</h4>
+                    <p>at {comment.created_at}</p>
+                    <p>Votes: {comment.votes}</p>
+                    <p>{comment.body}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+      )}
     </>
   );
 };
