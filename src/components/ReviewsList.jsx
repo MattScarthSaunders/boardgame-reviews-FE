@@ -12,6 +12,7 @@ const ReviewsList = () => {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
+    setIsLoading(true);
     getReviews(page, resultLimit).then((response) => {
       setReviews(response.reviews);
       setReviewCount(response.total_count);
