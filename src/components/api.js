@@ -26,7 +26,7 @@ export const getCommentsByReview = (review_id) => {
 
 export const patchReviewVotes = (voteIncrement, review_id) => {
   return reviewsAPI
-    .patch(`reviews/${review_id}`, { inc_votes: voteIncrement })
+    .patch(`/reviews/${review_id}`, { inc_votes: voteIncrement })
     .then((response) => {
       return response.data.review.votes;
     });

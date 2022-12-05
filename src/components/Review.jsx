@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsByReview, getReview, patchReviewVotes } from "./api";
+import { getCommentsByReview, getReview } from "./api";
 import Votes from "./Votes";
 
 const Review = () => {
@@ -37,22 +37,6 @@ const Review = () => {
     });
   }, []);
 
-  useEffect(() => {
-    patchReviewVotes(votes.reviewVotes, review_id)
-      .then()
-      .catch((err) => {
-        if (err) {
-          setVotes((currVotes) => {
-            let newVotes = { ...currVotes };
-            newVotes.reviewVotes += votes.reviewVotes * -1;
-            return newVotes;
-          });
-        }
-      });
-  }, [votes.reviewVotes]);
-
-  const reviewVotes = review.votes + votes.reviewVotes;
-
   return reviewLoading ? (
     <p>Loading Review...</p>
   ) : (
@@ -73,8 +57,13 @@ const Review = () => {
           <p>{review.review_body}</p>
           <p>Review by: {review.owner}</p>
           <p>Reviewed on: {review.created_at.slice(0, 10)}</p>
-          <p>Votes: {reviewVotes}</p>
-          <Votes buttonName="reviewVotes" setVotes={setVotes} />
+          <p>Votes: {review.votes + votes.reviewVotes}</p>
+          <Votes
+            buttonName="reviewVotes"
+            setVotes={setVotes}
+            votes={votes}
+            review_id={review_id}
+          />
         </section>
       </section>
       {commentsLoading ? (
@@ -95,8 +84,9 @@ const Review = () => {
                     <Votes
                       buttonName={comment.comment_id}
                       setVotes={setVotes}
+                      votes={votes}
+                      review_id={review_id}
                     />
-
                     <p>{comment.body}</p>
                   </li>
                 );
