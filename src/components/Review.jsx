@@ -36,8 +36,12 @@ const Review = () => {
         <section className="Review--Body">
           <h3>Review:</h3>
           <p>{review.review_body}</p>
-          <p>Review by: {review.owner}</p>
-          <p>Reviewed on: {review.created_at.slice(0, 10)}</p>
+          <p>
+            <strong>Review by:</strong> {review.owner}
+          </p>
+          <p>
+            <strong>Reviewed on:</strong> {review.created_at.slice(0, 10)}
+          </p>
           <Votes type="review" review={review} />
         </section>
         <Comments review_id={review_id} />

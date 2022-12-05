@@ -31,3 +31,11 @@ export const patchReviewVotes = (voteIncrement, review_id) => {
       return response.data.review.votes;
     });
 };
+
+export const patchCommentVotes = (voteIncrement, comment_id) => {
+  return reviewsAPI
+    .patch(`/comments/${comment_id}`, { inc_votes: voteIncrement })
+    .then((response) => {
+      return response.data.comment.votes;
+    });
+};

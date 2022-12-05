@@ -4,13 +4,42 @@
   box-sizing: border-box;
 }
 
+/* 
+#2C3A3C - grey
+#39706C - green
+#4AAAC1 - blue
+#B5C8BD - light grey
+#ECDC75 - yellow */
+
 header {
   position: fixed;
   top: 0;
   height: 100px;
   width: 100vw;
   border: 1px solid black;
-  background: rgb(67, 67, 150);
+  background: #2c3a3c;
+}
+
+h1 {
+  color: #b5c8bd;
+  margin: 10px;
+}
+
+h3,
+strong {
+  color: #39706c;
+}
+
+a {
+  text-decoration: none;
+  color: #b5c8bd;
+  border: 1px solid #b5c8bd;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+nav {
+  margin: 10px;
 }
 
 main {
@@ -49,6 +78,9 @@ main {
   grid-template-rows: 50% 50%;
   gap: 20px;
   padding: 20px;
+  background-color: #b5c8bd;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .Review--Img {
@@ -56,6 +88,8 @@ main {
   max-height: 50vh;
   grid-column: 1;
   grid-row: 1;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0 black;
 }
 .Review--About {
   grid-column: 2;
@@ -72,10 +106,12 @@ main {
 }
 
 .Comments {
+  grid-column: span 2;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
+  margin: 10px;
 }
 
 .Comments--List {
@@ -86,7 +122,35 @@ main {
   gap: 10px;
 }
 
-.Comments--List li {
+.Comment {
   border: 1px solid grey;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #d6e7dd;
+}
+
+.Comment--Header {
+  grid-row: 1;
+  display: flex;
+  gap: 5px;
+}
+
+.Comment--Body {
+  grid-row: 2;
+}
+
+.Votes {
+  display: flex;
+}
+.Vote--Button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  margin-left: 2px;
+}
+
+.Vote--Button:hover {
+  color: #39706c;
+  cursor: pointer;
 }

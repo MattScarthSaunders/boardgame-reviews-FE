@@ -26,11 +26,13 @@ const Comments = ({ review_id }) => {
         <ul className="Comments--List">
           {comments.map((comment) => {
             return (
-              <li key={comment.comment_id}>
-                <h4>{comment.author}</h4>
-                <p>at {comment.created_at}</p>
-                <Votes type="comment" comment={comment} />
-                <p>{comment.body}</p>
+              <li key={comment.comment_id} className="Comment">
+                <section className="Comment--Header">
+                  <h4>{comment.author}</h4>
+                  <p>On {comment.created_at.slice(0, 10)}</p>
+                  <Votes type="comment" comment={comment} />
+                </section>
+                <p className="Comment--Body">{comment.body}</p>
               </li>
             );
           })}

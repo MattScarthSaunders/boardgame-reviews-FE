@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { patchReviewVotes } from "./api";
+import { patchCommentVotes, patchReviewVotes } from "./api";
 
 const Votes = ({ type, review, comment }) => {
   const [reviewIncrement, setReviewIncrement] = useState(0);
@@ -11,10 +11,15 @@ const Votes = ({ type, review, comment }) => {
   }, []);
 
   useEffect(() => {
-    patchReviewVotes(reviewIncrement, review.review_id).catch((err) => {
-      if (err) setReviewIncrement(0);
-    });
-  }, [reviewIncrement]);
+    if (type === "review")
+      patchReviewVotes(reviewIncrement, review.review_id).catch((err) => {
+        if (err) setReviewIncrement(0);
+      });
+    if (type === "comment")
+      patchCommentVotes(commentIncrement, comment.comment_id).catch((err) => {
+        if (err) setCommentIncrement(0);
+      });
+  }, [reviewIncrement, commentIncrement]);
 
   const handleVote = (upOrDown) => {
     if (upOrDown === "up") {
@@ -25,24 +30,36 @@ const Votes = ({ type, review, comment }) => {
   };
 
   return (
-    <>
-      {type === "review" && <p>Votes: {review.votes + reviewIncrement}</p>}
-      {type === "comment" && <p>Votes: {comment.votes + commentIncrement}</p>}
+    <section className="Votes">
+      {type === "review" && (
+        <p>
+          <strong>Votes: </strong>
+          {review.votes + reviewIncrement}
+        </p>
+      )}
+      {type === "comment" && (
+        <p>
+          <strong>Votes: </strong>
+          {comment.votes + commentIncrement}
+        </p>
+      )}
       <button
+        className="Vote--Button"
         onClick={() => {
           handleVote("up");
         }}
       >
-        👍
+        ▲
       </button>
       <button
+        className="Vote--Button"
         onClick={() => {
           handleVote("down");
         }}
       >
-        👎
+        ▼
       </button>
-    </>
+    </section>
   );
 };
 
