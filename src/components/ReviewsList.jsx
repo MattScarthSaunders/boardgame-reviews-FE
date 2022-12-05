@@ -19,8 +19,8 @@ const ReviewsList = () => {
       const newPages = new Array(Math.round(reviewCount / resultLimit));
       setPages(newPages.fill());
       setPage(0);
+      setIsLoading(false);
     });
-    setIsLoading(false);
   }, [resultLimit, page]);
 
   return isLoading ? (

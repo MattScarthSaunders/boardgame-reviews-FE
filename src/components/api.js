@@ -24,10 +24,9 @@ export const getCommentsByReview = (review_id) => {
   });
 };
 
-export const patchReviewVotes = (voteCount, review_id) => {
-  console.log(voteCount);
+export const patchReviewVotes = (voteIncrement, review_id) => {
   return reviewsAPI
-    .patch(`reviews/${review_id}`, { inc_votes: voteCount })
+    .patch(`reviews/${review_id}`, { inc_votes: voteIncrement })
     .then((response) => {
       return response.data.review.votes;
     });
