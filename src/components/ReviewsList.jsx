@@ -22,23 +22,21 @@ const ReviewsList = () => {
     setIsLoading(false);
   }, [resultLimit, page]);
 
-  console.log(pages);
   return isLoading ? (
     <p>loading...</p>
   ) : (
     <>
-      <label forHtml="resultLimit">
-        <select
-          id="resultLimit"
-          onChange={(e) => {
-            setResultLimit(e.target.value);
-          }}
-        >
-          <option>10</option>
-          <option>25</option>
-          <option>50</option>
-        </select>
-      </label>
+      <label htmlFor="resultLimit">Result Limit:</label>
+      <select
+        id="resultLimit"
+        onChange={(e) => {
+          setResultLimit(e.target.value);
+        }}
+      >
+        <option>10</option>
+        <option>25</option>
+        <option>50</option>
+      </select>
       {reviewCount > resultLimit && <label forHtml="PageSelect0">Page:</label>}
       {pages.length > 1 &&
         pages.map((page, index) => {
