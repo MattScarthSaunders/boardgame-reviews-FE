@@ -1,47 +1,43 @@
+import { useEffect, useState } from "react";
 import { patchReviewVotes } from "./api";
 
-const Votes = ({ buttonName, setVotes, votes, review_id }) => {
-  const handleVote = (buttonType, setVotes, upOrDown, id) => {
-    if (upOrDown === "up") {
-      setVotes((currVotes) => {
-        let newVotes = { ...currVotes };
-        newVotes[buttonType] = 1;
-        return newVotes;
-      });
-    } else if (upOrDown === "down") {
-      setVotes((currVotes) => {
-        let newVotes = { ...currVotes };
-        newVotes[buttonType] = -1;
-        return newVotes;
-      });
-    }
+const Votes = ({ type, review, comment }) => {
+  const [reviewIncrement, setReviewIncrement] = useState(0);
+  const [commentIncrement, setCommentIncrement] = useState(0);
 
-    if (buttonName === "reviewVotes") {
-      patchReviewVotes(votes[buttonType], id)
-        .then()
-        .catch((err) => {
-          if (err)
-            setVotes((currVotes) => {
-              let newVotes = { ...currVotes };
-              newVotes[buttonType] = 0;
-              return newVotes;
-            });
-        });
+  useEffect(() => {
+    setReviewIncrement(0);
+    setCommentIncrement(0);
+  }, []);
+
+  useEffect(() => {
+    patchReviewVotes(reviewIncrement, review.review_id).catch((err) => {
+      if (err) setReviewIncrement(0);
+    });
+  }, [reviewIncrement]);
+
+  const handleVote = (upOrDown) => {
+    if (upOrDown === "up") {
+      type === "review" ? setReviewIncrement(1) : setCommentIncrement(1);
+    } else if (upOrDown === "down") {
+      type === "review" ? setReviewIncrement(-1) : setCommentIncrement(-1);
     }
   };
 
   return (
     <>
+      {type === "review" && <p>Votes: {review.votes + reviewIncrement}</p>}
+      {type === "comment" && <p>Votes: {comment.votes + commentIncrement}</p>}
       <button
         onClick={() => {
-          handleVote(buttonName, setVotes, "up", review_id);
+          handleVote("up");
         }}
       >
         👍
       </button>
       <button
         onClick={() => {
-          handleVote(buttonName, setVotes, "down", review_id);
+          handleVote("down");
         }}
       >
         👎

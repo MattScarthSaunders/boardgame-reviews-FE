@@ -1,39 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsByReview, getReview } from "./api";
+import { getReview } from "./api";
+import Comments from "./Comments";
 import Votes from "./Votes";
 
 const Review = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [reviewLoading, setReviewLoading] = useState(true);
-  const [commentsLoading, setCommentsLoading] = useState(true);
-  const [comments, setComments] = useState([]);
-  const [votes, setVotes] = useState([]);
 
   useEffect(() => {
     setReviewLoading(true);
-    setCommentsLoading(true);
 
     getReview(review_id).then((response) => {
       setReview(response);
       setReviewLoading(false);
-      setVotes((currVotes) => {
-        let newVotes = { ...currVotes };
-        newVotes.reviewVotes = 0;
-        return newVotes;
-      });
-    });
-    getCommentsByReview(review_id).then((response) => {
-      setComments(response);
-      setCommentsLoading(false);
-      setVotes((currVotes) => {
-        let newVotes = { ...currVotes };
-        response.forEach((comment) => {
-          newVotes[comment.comment_id] = 0;
-        });
-        return newVotes;
-      });
     });
   }, []);
 
@@ -57,44 +38,10 @@ const Review = () => {
           <p>{review.review_body}</p>
           <p>Review by: {review.owner}</p>
           <p>Reviewed on: {review.created_at.slice(0, 10)}</p>
-          <p>Votes: {review.votes + votes.reviewVotes}</p>
-          <Votes
-            buttonName="reviewVotes"
-            setVotes={setVotes}
-            votes={votes}
-            review_id={review_id}
-          />
+          <Votes type="review" review={review} />
         </section>
+        <Comments review_id={review_id} />
       </section>
-      {commentsLoading ? (
-        <p>Loading Comments...</p>
-      ) : (
-        <section className="Comments">
-          <h3>Comments</h3>
-          {comments.length < 1 ? (
-            <p>There are no comments yet!</p>
-          ) : (
-            <ul className="Comments--List">
-              {comments.map((comment) => {
-                return (
-                  <li key={comment.comment_id}>
-                    <h4>{comment.author}</h4>
-                    <p>at {comment.created_at}</p>
-                    <p>Votes: {comment.votes + votes[comment.comment_id]}</p>
-                    <Votes
-                      buttonName={comment.comment_id}
-                      setVotes={setVotes}
-                      votes={votes}
-                      review_id={review_id}
-                    />
-                    <p>{comment.body}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </section>
-      )}
     </>
   );
 };
