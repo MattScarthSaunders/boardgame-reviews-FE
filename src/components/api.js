@@ -11,3 +11,9 @@ export const getReviews = (page = 0, limit = 10) => {
       return response.data;
     });
 };
+
+export const getReview = (review_id) => {
+  return reviewsAPI.get(`/reviews/${review_id}`).then((response) => {
+    return response.data.review;
+  });
+};

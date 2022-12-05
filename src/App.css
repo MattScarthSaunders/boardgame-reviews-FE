@@ -42,3 +42,30 @@ main {
 .Reviews--List--Card img {
   width: 100%;
 }
+
+.Review {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: 20px;
+  padding: 20px;
+}
+
+.Review--Img {
+  max-width: 100%;
+  grid-column: 1;
+  grid-row: 1;
+}
+.Review--About {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.Review--Body {
+  grid-column: span 2;
+  grid-row: 2;
+}
+
+.Review--Body p {
+  margin: 5px;
+}
