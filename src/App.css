@@ -50,6 +50,8 @@ main {
   align-items: center;
 }
 
+/* ------------------------REVIEW LIST------------------------- */
+
 .Reviews--List {
   display: flex;
   justify-content: center;
@@ -66,12 +68,16 @@ main {
   text-align: center;
   border: 1px solid black;
   width: 30vw;
+  background-color: #b5c8bd;
+  border-radius: 5px;
 }
 
 .Reviews--List--Card img {
   width: 100%;
+  margin: 15px 0;
 }
 
+/* ---------------------------REVIEW--------------------------- */
 .Review {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -128,6 +134,7 @@ main {
   display: flex;
   flex-direction: column;
   background-color: #d6e7dd;
+  padding: 10px;
 }
 
 .Comment--Header {
