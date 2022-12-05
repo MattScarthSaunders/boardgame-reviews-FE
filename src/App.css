@@ -53,6 +53,7 @@ main {
 
 .Review--Img {
   max-width: 30vw;
+  max-height: 50vh;
   grid-column: 1;
   grid-row: 1;
 }
