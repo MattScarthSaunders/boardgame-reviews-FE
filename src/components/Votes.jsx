@@ -5,9 +5,7 @@ const Votes = ({ buttonName, setVotes }) => {
         onClick={() => {
           setVotes((currVotes) => {
             let newVotes = { ...currVotes };
-            !newVotes[buttonName]
-              ? (newVotes[buttonName] = 1)
-              : newVotes[buttonName]++;
+            newVotes[buttonName] = 1;
             return newVotes;
           });
         }}
@@ -18,9 +16,7 @@ const Votes = ({ buttonName, setVotes }) => {
         onClick={() => {
           setVotes((currVotes) => {
             let newVotes = { ...currVotes };
-            !newVotes[buttonName]
-              ? (newVotes[buttonName] = -1)
-              : newVotes[buttonName]--;
+            newVotes[buttonName] = -1;
             return newVotes;
           });
         }}

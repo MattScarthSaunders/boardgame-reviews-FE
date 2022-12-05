@@ -23,3 +23,12 @@ export const getCommentsByReview = (review_id) => {
     return response.data.comments;
   });
 };
+
+export const patchReviewVotes = (voteCount, review_id) => {
+  console.log(voteCount);
+  return reviewsAPI
+    .patch(`reviews/${review_id}`, { inc_votes: voteCount })
+    .then((response) => {
+      return response.data.review.votes;
+    });
+};

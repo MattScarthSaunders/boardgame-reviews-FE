@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsByReview, getReview } from "./api";
+import { getCommentsByReview, getReview, patchReviewVotes } from "./api";
 import Votes from "./Votes";
 
 const Review = () => {
@@ -20,7 +20,7 @@ const Review = () => {
       setReviewLoading(false);
       setVotes((currVotes) => {
         let newVotes = { ...currVotes };
-        newVotes.reviewVotes = response.votes;
+        newVotes.reviewVotes = 0;
         return newVotes;
       });
     });
@@ -30,12 +30,28 @@ const Review = () => {
       setVotes((currVotes) => {
         let newVotes = { ...currVotes };
         response.forEach((comment) => {
-          newVotes[comment.comment_id] = comment.votes;
+          newVotes[comment.comment_id] = 0;
         });
         return newVotes;
       });
     });
   }, []);
+
+  useEffect(() => {
+    patchReviewVotes(votes.reviewVotes, review_id)
+      .then()
+      .catch((err) => {
+        if (err) {
+          setVotes((currVotes) => {
+            let newVotes = { ...currVotes };
+            newVotes.reviewVotes += votes.reviewVotes * -1;
+            return newVotes;
+          });
+        }
+      });
+  }, [votes.reviewVotes]);
+
+  const reviewVotes = review.votes + votes.reviewVotes;
 
   return reviewLoading ? (
     <p>Loading Review...</p>
@@ -57,7 +73,7 @@ const Review = () => {
           <p>{review.review_body}</p>
           <p>Review by: {review.owner}</p>
           <p>Reviewed on: {review.created_at.slice(0, 10)}</p>
-          <p>Votes: {votes.reviewVotes}</p>
+          <p>Votes: {reviewVotes}</p>
           <Votes buttonName="reviewVotes" setVotes={setVotes} />
         </section>
       </section>
@@ -75,7 +91,7 @@ const Review = () => {
                   <li key={comment.comment_id}>
                     <h4>{comment.author}</h4>
                     <p>at {comment.created_at}</p>
-                    <p>Votes: {votes[comment.comment_id]}</p>
+                    <p>Votes: {comment.votes + votes[comment.comment_id]}</p>
                     <Votes
                       buttonName={comment.comment_id}
                       setVotes={setVotes}
