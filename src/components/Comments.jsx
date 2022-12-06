@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCommentsByReview } from "./api";
+import CommentInput from "./CommentInput";
 import Votes from "./Votes";
 
 const Comments = ({ review_id }) => {
@@ -7,12 +8,14 @@ const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setCommentsLoading(true);
+    if (!comments.length) {
+      setCommentsLoading(true);
 
-    getCommentsByReview(review_id).then((response) => {
-      setComments(response);
-      setCommentsLoading(false);
-    });
+      getCommentsByReview(review_id).then((response) => {
+        setComments(response);
+        setCommentsLoading(false);
+      });
+    }
   }, []);
 
   return commentsLoading ? (
@@ -20,6 +23,7 @@ const Comments = ({ review_id }) => {
   ) : (
     <section className="Comments">
       <h3>Comments</h3>
+      <CommentInput review_id={review_id} setComments={setComments} />
       {comments.length < 1 ? (
         <p>There are no comments yet!</p>
       ) : (

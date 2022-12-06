@@ -10,12 +10,13 @@ const Review = () => {
   const [reviewLoading, setReviewLoading] = useState(true);
 
   useEffect(() => {
-    setReviewLoading(true);
-
-    getReview(review_id).then((response) => {
-      setReview(response);
-      setReviewLoading(false);
-    });
+    if (!review.length) {
+      setReviewLoading(true);
+      getReview(review_id).then((response) => {
+        setReview(response);
+        setReviewLoading(false);
+      });
+    }
   }, []);
 
   return reviewLoading ? (
