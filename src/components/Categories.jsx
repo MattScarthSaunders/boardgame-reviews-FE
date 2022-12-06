@@ -24,20 +24,18 @@ const Categories = () => {
       <button className="NavButton" onClick={showCategories}>
         Categories
       </button>
-      <section className="Reviews--Categories">
-        <section className={`Categories--Container ${isHidden}`}>
-          <ul className="Categories--List">
-            {categories.map(({ slug }) => {
-              return (
-                <li key={slug}>
-                  <Link onClick={showCategories} to={`/${slug}`}>
-                    {slug}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
+      <section className={`Categories--Container ${isHidden}`}>
+        <ul className="Categories--List">
+          {categories.map(({ slug }) => {
+            return (
+              <li key={slug}>
+                <Link onClick={showCategories} to={`/${slug}`}>
+                  {slug}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </section>
     </>
   );
