@@ -19,8 +19,8 @@ const ReviewsList = () => {
       const newPages = new Array(Math.round(reviewCount / resultLimit));
       setPages(newPages.fill());
       setPage(0);
+      setIsLoading(false);
     });
-    setIsLoading(false);
   }, [resultLimit, page]);
 
   return isLoading ? (
@@ -38,21 +38,24 @@ const ReviewsList = () => {
         <option>25</option>
         <option>50</option>
       </select>
-      {reviewCount > resultLimit && <label forHtml="PageSelect0">Page:</label>}
-      {pages.length > 1 &&
-        pages.map((page, index) => {
-          return (
-            <button
-              id={`PageSelect${index}`}
-              key={index + Math.random()}
-              onClick={() => {
-                setPage(index);
-              }}
-            >
-              {index}
-            </button>
-          );
-        })}
+      {reviewCount > resultLimit ? (
+        <label forHtml="PageSelect0">Page:</label>
+      ) : null}
+      {pages.length > 1
+        ? pages.map((page, index) => {
+            return (
+              <button
+                id={`PageSelect${index}`}
+                key={index + Math.random()}
+                onClick={() => {
+                  setPage(index);
+                }}
+              >
+                {index}
+              </button>
+            );
+          })
+        : null}
       <ul className="Reviews--List">
         {reviews.map(
           ({
@@ -66,12 +69,13 @@ const ReviewsList = () => {
           }) => {
             return (
               <li key={review_id} className="Reviews--List--Card">
-                <h3>{title}</h3>
                 <img src={review_img_url} alt={title} />
-                <p>User: {owner}</p>
-                <p>Votes: {votes}</p>
-                <p>Comments: {comment_count}</p>
-                <p>Posted: {created_at.slice(0, 10)}</p>
+                <h3>{title}</h3>
+                <section className="Reviews--List--Card--Info">
+                  <p>User: {owner}</p>
+                  <p id="VoteCount">{votes >= 0 ? `+${votes}` : `-${votes}`}</p>
+                  <p>Posted: {created_at.slice(0, 10)}</p>
+                </section>
                 <Link to={`/reviews/${review_id}`}>
                   <button>See Review</button>
                 </Link>

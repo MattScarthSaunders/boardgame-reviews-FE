@@ -23,3 +23,19 @@ export const getCommentsByReview = (review_id) => {
     return response.data.comments;
   });
 };
+
+export const patchReviewVotesUp = (review_id, value) => {
+  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: value });
+};
+
+export const patchReviewVotesDown = (review_id, value) => {
+  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: -value });
+};
+
+export const patchCommentVotesUp = (comment_id, value) => {
+  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: value });
+};
+
+export const patchCommentVotesDown = (comment_id, value) => {
+  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -value });
+};
