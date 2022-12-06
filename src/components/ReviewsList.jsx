@@ -16,7 +16,7 @@ const ReviewsList = () => {
     getReviews(page, resultLimit).then((response) => {
       setReviews(response.reviews);
       setReviewCount(response.total_count);
-      const newPages = new Array(Math.round(reviewCount / resultLimit));
+      const newPages = new Array(Math.ceil(response.total_count / resultLimit));
       setPages(newPages.fill());
       setIsLoading(false);
     });
@@ -33,6 +33,7 @@ const ReviewsList = () => {
           onChange={(e) => {
             setResultLimit(e.target.value);
           }}
+          value={resultLimit}
         >
           <option>10</option>
           <option>25</option>
