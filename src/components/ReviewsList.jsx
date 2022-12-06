@@ -18,7 +18,6 @@ const ReviewsList = () => {
       setReviewCount(response.total_count);
       const newPages = new Array(Math.round(reviewCount / resultLimit));
       setPages(newPages.fill());
-      setPage(0);
       setIsLoading(false);
     });
   }, [resultLimit, page]);
@@ -27,35 +26,37 @@ const ReviewsList = () => {
     <p>loading...</p>
   ) : (
     <>
-      <label htmlFor="resultLimit">Result Limit:</label>
-      <select
-        id="resultLimit"
-        onChange={(e) => {
-          setResultLimit(e.target.value);
-        }}
-      >
-        <option>10</option>
-        <option>25</option>
-        <option>50</option>
-      </select>
-      {reviewCount > resultLimit ? (
-        <label forHtml="PageSelect0">Page:</label>
-      ) : null}
-      {pages.length > 1
-        ? pages.map((page, index) => {
-            return (
-              <button
-                id={`PageSelect${index}`}
-                key={index + Math.random()}
-                onClick={() => {
-                  setPage(index);
-                }}
-              >
-                {index}
-              </button>
-            );
-          })
-        : null}
+      <section className="Reviews--Paginator">
+        <label htmlFor="resultLimit">Result Limit:</label>
+        <select
+          id="resultLimit"
+          onChange={(e) => {
+            setResultLimit(e.target.value);
+          }}
+        >
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        {reviewCount > resultLimit ? (
+          <label forHtml="PageSelect0">Page:</label>
+        ) : null}
+        {pages.length > 1
+          ? pages.map((page, index) => {
+              return (
+                <button
+                  id={`PageSelect${index}`}
+                  key={index + Math.random()}
+                  onClick={() => {
+                    setPage(index);
+                  }}
+                >
+                  {index}
+                </button>
+              );
+            })
+          : null}
+      </section>
       <ul className="Reviews--List">
         {reviews.map(
           ({
