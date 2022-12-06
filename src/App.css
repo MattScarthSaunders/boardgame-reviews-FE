@@ -53,6 +53,20 @@ main {
 
 /* ------------------------REVIEW LIST------------------------- */
 
+.Reviews--Paginator {
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+}
+
+.Reviews--Paginator button {
+  padding: 3px;
+  width: 20px;
+}
+
 .Reviews--List {
   display: flex;
   justify-content: center;
