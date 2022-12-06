@@ -30,7 +30,11 @@ const Comments = ({ review_id }) => {
                 <section className="Comment--Header">
                   <h4>{comment.author}</h4>
                   <p>On {comment.created_at.slice(0, 10)}</p>
-                  <Votes type="comment" comment={comment} />
+                  <Votes
+                    type="comment"
+                    comment={comment}
+                    voteId={comment.comment_id}
+                  />
                 </section>
                 <p className="Comment--Body">{comment.body}</p>
               </li>

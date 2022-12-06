@@ -42,7 +42,7 @@ const Review = () => {
           <p>
             <strong>Reviewed on:</strong> {review.created_at.slice(0, 10)}
           </p>
-          <Votes type="review" review={review} />
+          <Votes type="review" review={review} voteId={review.review_id} />
         </section>
         <Comments review_id={review_id} />
       </section>

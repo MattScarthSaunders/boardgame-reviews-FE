@@ -1,53 +1,63 @@
 import { useState } from "react";
-import { patchCommentVotes, patchReviewVotes } from "./api";
+import {
+  patchCommentVotesDown,
+  patchCommentVotesUp,
+  patchReviewVotesDown,
+  patchReviewVotesUp,
+} from "./api";
 
-const Votes = ({ type, review, comment }) => {
+const Votes = ({ type, review, comment, voteId }) => {
   const [reviewIncrement, setReviewIncrement] = useState(0);
   const [commentIncrement, setCommentIncrement] = useState(0);
-  const [upVote, setUpVote] = useState(1);
-  const [downVote, setDownVote] = useState(-1);
 
-  const handleUpVote = (e, type) => {
-    setUpVote(0);
-    if (type === "review" && e.target.value !== 0) {
-      setReviewIncrement(1);
-      patchReviewVotes(e.target.value, review.review_id).catch((err) => {
-        if (err) {
-          setUpVote(1);
-          setReviewIncrement(0);
-        }
+  const handleUpVote = (type, id) => {
+    if (type === "review") {
+      setReviewIncrement((currInc) => {
+        return currInc + 1;
+      });
+      patchReviewVotesUp(id).catch((err) => {
+        if (err)
+          setReviewIncrement((currInc) => {
+            return currInc - 1;
+          });
       });
     }
-    if (type === "comment" && e.target.value !== 0) {
-      setCommentIncrement(1);
-      patchCommentVotes(e.target.value, comment.comment_id).catch((err) => {
-        if (err) {
-          setUpVote(1);
-          setCommentIncrement(0);
-        }
+
+    if (type === "comment") {
+      setCommentIncrement((currInc) => {
+        return currInc + 1;
+      });
+      patchCommentVotesUp(id).catch((err) => {
+        if (err)
+          setCommentIncrement((currInc) => {
+            return currInc - 1;
+          });
       });
     }
   };
 
-  const handleDownVote = (e, type) => {
-    setDownVote(0);
-
-    if (type === "review" && e.target.value !== 0) {
-      setReviewIncrement(-1);
-      patchReviewVotes(e.target.value, review.review_id).catch((err) => {
-        if (err) {
-          setDownVote(-1);
-          setReviewIncrement(0);
-        }
+  const handleDownVote = (type, id) => {
+    if (type === "review") {
+      setReviewIncrement((currInc) => {
+        return currInc - 1;
+      });
+      patchReviewVotesDown(id).catch((err) => {
+        if (err)
+          setReviewIncrement((currInc) => {
+            return currInc + 1;
+          });
       });
     }
-    if (type === "comment" && e.target.value !== 0) {
-      setCommentIncrement(-1);
-      patchCommentVotes(e.target.value, comment.comment_id).catch((err) => {
-        if (err) {
-          setDownVote(-1);
-          setCommentIncrement(0);
-        }
+
+    if (type === "comment") {
+      setCommentIncrement((currInc) => {
+        return currInc - 1;
+      });
+      patchCommentVotesDown(id).catch((err) => {
+        if (err)
+          setCommentIncrement((currInc) => {
+            return currInc + 1;
+          });
       });
     }
   };
@@ -68,19 +78,17 @@ const Votes = ({ type, review, comment }) => {
       ) : null}
       <button
         className="Vote--Button"
-        onClick={(e) => {
-          handleUpVote(e, type);
+        onClick={() => {
+          handleUpVote(type, voteId);
         }}
-        value={upVote}
       >
         ▲
       </button>
       <button
         className="Vote--Button"
-        onClick={(e) => {
-          handleDownVote(e, type);
+        onClick={() => {
+          handleDownVote(type, voteId);
         }}
-        value={downVote}
       >
         ▼
       </button>
