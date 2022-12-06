@@ -66,12 +66,13 @@ const ReviewsList = () => {
           }) => {
             return (
               <li key={review_id} className="Reviews--List--Card">
-                <h3>{title}</h3>
                 <img src={review_img_url} alt={title} />
-                <p>User: {owner}</p>
-                <p>Votes: {votes}</p>
-                <p>Comments: {comment_count}</p>
-                <p>Posted: {created_at.slice(0, 10)}</p>
+                <h3>{title}</h3>
+                <section className="Reviews--List--Card--Info">
+                  <p>User: {owner}</p>
+                  <p>Votes: {votes}</p>
+                  <p>Posted: {created_at.slice(0, 10)}</p>
+                </section>
                 <Link to={`/reviews/${review_id}`}>
                   <button>See Review</button>
                 </Link>

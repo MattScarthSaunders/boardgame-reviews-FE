@@ -66,15 +66,52 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid black;
   width: 30vw;
-  background-color: #b5c8bd;
+
   border-radius: 5px;
 }
 
+.Reviews--List--Card:hover {
+  background-color: #b5c8bd;
+  box-shadow: 0 0 15px 0 black;
+}
+
+.Reviews--List--Card h3 {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .Reviews--List--Card img {
   width: 100%;
-  margin: 15px 0;
+  height: 10vh;
+  margin-top: 15px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.Reviews--List--Card--Info {
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.Reviews--List--Card a {
+  border: none;
+  background-color: none;
+}
+
+.Reviews--List--Card a button {
+  color: #b5c8bd;
+  border: 1px solid #2c3a3c;
+  background-color: #39706c;
+  padding: 5px;
+  border-radius: 5px;
+}
+.Reviews--List--Card a button:hover {
+  cursor: pointer;
 }
 
 /* ---------------------------REVIEW--------------------------- */
@@ -105,10 +142,11 @@ main {
 .Review--Body {
   grid-column: span 2;
   grid-row: 2;
+  max-width: 95%;
 }
 
 .Review--Body p {
-  margin: 5px;
+  margin: 5px 0;
 }
 
 .Comments {
@@ -117,7 +155,8 @@ main {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  margin: 10px;
+  margin: 10px 0;
+  max-width: 95%;
 }
 
 .Comments--List {
