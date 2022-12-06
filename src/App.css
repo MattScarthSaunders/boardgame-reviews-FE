@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Jost", sans-serif;
 }
 
 /* 
@@ -126,7 +127,7 @@ main {
 }
 
 .Review--Img {
-  max-width: 30vw;
+  max-width: 40vw;
   max-height: 50vh;
   grid-column: 1;
   grid-row: 1;
@@ -136,6 +137,10 @@ main {
 .Review--About {
   grid-column: 2;
   grid-row: 1;
+}
+
+.Review--About h2 {
+  color: #2c3a3c;
 }
 
 .Review--Body {
@@ -173,6 +178,7 @@ main {
   flex-direction: column;
   background-color: #d6e7dd;
   padding: 10px;
+  border-radius: 5px;
 }
 
 .Comment--Header {
