@@ -16,10 +16,11 @@ const Votes = ({ type, review, comment, voteId }) => {
         return currInc + 1;
       });
       patchReviewVotesUp(id).catch((err) => {
-        if (err)
+        if (err) {
           setReviewIncrement((currInc) => {
             return currInc - 1;
           });
+        }
       });
     }
 
@@ -28,10 +29,11 @@ const Votes = ({ type, review, comment, voteId }) => {
         return currInc + 1;
       });
       patchCommentVotesUp(id).catch((err) => {
-        if (err)
+        if (err) {
           setCommentIncrement((currInc) => {
             return currInc - 1;
           });
+        }
       });
     }
   };
@@ -42,10 +44,11 @@ const Votes = ({ type, review, comment, voteId }) => {
         return currInc - 1;
       });
       patchReviewVotesDown(id).catch((err) => {
-        if (err)
+        if (err) {
           setReviewIncrement((currInc) => {
             return currInc + 1;
           });
+        }
       });
     }
 
@@ -54,10 +57,11 @@ const Votes = ({ type, review, comment, voteId }) => {
         return currInc - 1;
       });
       patchCommentVotesDown(id).catch((err) => {
-        if (err)
+        if (err) {
           setCommentIncrement((currInc) => {
             return currInc + 1;
           });
+        }
       });
     }
   };
