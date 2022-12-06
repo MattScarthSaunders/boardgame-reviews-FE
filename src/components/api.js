@@ -39,3 +39,14 @@ export const patchCommentVotesUp = (comment_id, value) => {
 export const patchCommentVotesDown = (comment_id, value) => {
   return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -value });
 };
+
+export const postComment = (comment, review_id) => {
+  return reviewsAPI
+    .post(`/reviews/${review_id}/comments`, {
+      username: "jessjelly",
+      body: comment,
+    })
+    .then((response) => {
+      return response.data.comment;
+    });
+};
