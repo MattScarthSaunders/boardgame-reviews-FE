@@ -155,6 +155,8 @@ main {
   margin: 5px 0;
 }
 
+/* ---------------------------COMMENTS--------------------------- */
+
 .Comments {
   display: flex;
   flex-direction: column;
@@ -193,6 +195,10 @@ main {
   grid-row: 2;
 }
 
+.Comment--InputForm {
+  width: 100%;
+}
+/* ---------------------------VOTING--------------------------- */
 .Votes {
   display: flex;
 }

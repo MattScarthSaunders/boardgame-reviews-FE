@@ -54,12 +54,13 @@ const CommentInput = ({ review_id, setComments }) => {
         onSubmit={(e) => {
           handleSubmit(e, input, review_id);
         }}
+        className="Comment--InputForm"
       >
-        <input
+        <textarea
           placeholder="Add a comment..."
           onChange={handleInput}
           value={input}
-        ></input>
+        ></textarea>
         <button type="submit" disabled={false}>
           Submit
         </button>
