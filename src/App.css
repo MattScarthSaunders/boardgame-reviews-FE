@@ -15,7 +15,7 @@
 header {
   position: fixed;
   top: 0;
-  height: 100px;
+  height: 110px;
   width: 100vw;
   border: 1px solid black;
   background: #2c3a3c;
@@ -23,7 +23,7 @@ header {
 
 h1 {
   color: #b5c8bd;
-  margin: 10px;
+  margin: 8px;
 }
 
 h3,
@@ -34,21 +34,47 @@ strong {
 a {
   text-decoration: none;
   color: #b5c8bd;
+}
+
+.NavButton {
+  color: #b5c8bd;
   border: 1px solid #b5c8bd;
   padding: 4px;
   border-radius: 3px;
+  background-color: #2c3a3c;
 }
 
 nav {
   margin: 10px;
+  position: fixed;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  height: 2vh;
+  background-color: #2c3a3c;
+  gap: 5px;
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 110px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+/* ------------------------Categories------------------------- */
+
+.Hide {
+  visibility: hidden;
+}
+
+.Show {
+  visibility: visible;
+  height: 10vh;
+  padding: 10px;
+  background-color: #2c3a3c;
 }
 
 /* ------------------------REVIEW LIST------------------------- */
