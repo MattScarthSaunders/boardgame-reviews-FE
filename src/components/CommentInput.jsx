@@ -3,8 +3,7 @@ import { postComment } from "./api";
 
 const CommentInput = ({ review_id, setComments }) => {
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [failureMessage, setFailureMessage] = useState("");
+  const [warningMessage, setWarningMessage] = useState("");
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -12,12 +11,12 @@ const CommentInput = ({ review_id, setComments }) => {
 
   const handleSubmit = (e, input, review_id) => {
     e.preventDefault();
-    setFailureMessage("");
-    setIsLoading(true);
+    setWarningMessage("Submitting Message...");
+    e.target[1].disabled = true;
 
     if (!input.length) {
-      setFailureMessage("Please enter some text!");
-      setIsLoading(false);
+      setWarningMessage("Please enter some text!");
+      e.target[1].disabled = false;
     } else {
       postComment(input, review_id)
         .then((response) => {
@@ -34,11 +33,17 @@ const CommentInput = ({ review_id, setComments }) => {
           });
 
           setInput("");
-          setIsLoading(false);
+          setWarningMessage("");
+          return false;
+        })
+        .then((res) => {
+          e.target[1].disabled = res;
         })
         .catch((err) => {
-          setIsLoading(false);
-          setFailureMessage("Failed to post comment, please try again.");
+          if (err) {
+            setWarningMessage("Failed to post comment, please try again.");
+            e.target[1].disabled = false;
+          }
         });
     }
   };
@@ -55,10 +60,11 @@ const CommentInput = ({ review_id, setComments }) => {
           onChange={handleInput}
           value={input}
         ></input>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={false}>
+          Submit
+        </button>
       </form>
-      {isLoading ? <p>Submitting comment...</p> : null}
-      {failureMessage.length > 0 ? <p>{failureMessage}</p> : null}
+      {warningMessage.length > 0 ? <p>{warningMessage}</p> : null}
     </>
   );
 };
