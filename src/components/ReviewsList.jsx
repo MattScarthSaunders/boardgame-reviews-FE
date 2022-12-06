@@ -38,21 +38,24 @@ const ReviewsList = () => {
         <option>25</option>
         <option>50</option>
       </select>
-      {reviewCount > resultLimit && <label forHtml="PageSelect0">Page:</label>}
-      {pages.length > 1 &&
-        pages.map((page, index) => {
-          return (
-            <button
-              id={`PageSelect${index}`}
-              key={index + Math.random()}
-              onClick={() => {
-                setPage(index);
-              }}
-            >
-              {index}
-            </button>
-          );
-        })}
+      {reviewCount > resultLimit ? (
+        <label forHtml="PageSelect0">Page:</label>
+      ) : null}
+      {pages.length > 1
+        ? pages.map((page, index) => {
+            return (
+              <button
+                id={`PageSelect${index}`}
+                key={index + Math.random()}
+                onClick={() => {
+                  setPage(index);
+                }}
+              >
+                {index}
+              </button>
+            );
+          })
+        : null}
       <ul className="Reviews--List">
         {reviews.map(
           ({
