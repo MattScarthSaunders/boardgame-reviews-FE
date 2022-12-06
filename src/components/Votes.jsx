@@ -11,58 +11,86 @@ const Votes = ({ type, review, comment, voteId }) => {
   const [commentIncrement, setCommentIncrement] = useState(0);
 
   const handleUpVote = (type, id) => {
-    if (type === "review") {
+    let valueChange = 0;
+
+    if (type === "review" && reviewIncrement < 1) {
+      valueChange = reviewIncrement < 0 ? 2 : 1;
+
       setReviewIncrement((currInc) => {
-        return currInc + 1;
+        return currInc + valueChange;
       });
-      patchReviewVotesUp(id).catch((err) => {
+      patchReviewVotesUp(id, valueChange).catch((err) => {
         if (err) {
           setReviewIncrement((currInc) => {
-            return currInc - 1;
+            return currInc - valueChange;
           });
         }
       });
     }
 
-    if (type === "comment") {
+    if (type === "comment" && commentIncrement < 1) {
+      valueChange = commentIncrement < 0 ? 2 : 1;
+
       setCommentIncrement((currInc) => {
-        return currInc + 1;
+        return currInc + valueChange;
       });
-      patchCommentVotesUp(id).catch((err) => {
+      patchCommentVotesUp(id, valueChange).catch((err) => {
         if (err) {
           setCommentIncrement((currInc) => {
-            return currInc - 1;
+            return currInc - valueChange;
           });
         }
       });
+    }
+
+    if (reviewIncrement > 1) {
+      setReviewIncrement(1);
+    }
+
+    if (commentIncrement > 1) {
+      setCommentIncrement(1);
     }
   };
 
   const handleDownVote = (type, id) => {
-    if (type === "review") {
+    let valueChange = 0;
+
+    if (type === "review" && reviewIncrement > -1) {
+      valueChange = reviewIncrement > 0 ? 2 : 1;
+
       setReviewIncrement((currInc) => {
-        return currInc - 1;
+        return currInc - valueChange;
       });
-      patchReviewVotesDown(id).catch((err) => {
+      patchReviewVotesDown(id, valueChange).catch((err) => {
         if (err) {
           setReviewIncrement((currInc) => {
-            return currInc + 1;
+            return currInc + valueChange;
           });
         }
       });
     }
 
-    if (type === "comment") {
+    if (type === "comment" && commentIncrement > -1) {
+      valueChange = commentIncrement > 0 ? 2 : 1;
+
       setCommentIncrement((currInc) => {
-        return currInc - 1;
+        return currInc - valueChange;
       });
-      patchCommentVotesDown(id).catch((err) => {
+      patchCommentVotesDown(id, valueChange).catch((err) => {
         if (err) {
           setCommentIncrement((currInc) => {
-            return currInc + 1;
+            return currInc + valueChange;
           });
         }
       });
+    }
+
+    if (reviewIncrement < -1) {
+      setReviewIncrement(-1);
+    }
+
+    if (commentIncrement < -1) {
+      setCommentIncrement(-1);
     }
   };
 

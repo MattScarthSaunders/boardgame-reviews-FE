@@ -24,18 +24,18 @@ export const getCommentsByReview = (review_id) => {
   });
 };
 
-export const patchReviewVotesUp = (review_id) => {
-  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: 1 });
+export const patchReviewVotesUp = (review_id, value) => {
+  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: value });
 };
 
-export const patchReviewVotesDown = (review_id) => {
-  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: -1 });
+export const patchReviewVotesDown = (review_id, value) => {
+  return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: -value });
 };
 
-export const patchCommentVotesUp = (comment_id) => {
-  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: 1 });
+export const patchCommentVotesUp = (comment_id, value) => {
+  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: value });
 };
 
-export const patchCommentVotesDown = (comment_id) => {
-  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -1 });
+export const patchCommentVotesDown = (comment_id, value) => {
+  return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -value });
 };
