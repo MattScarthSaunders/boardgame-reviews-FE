@@ -67,7 +67,6 @@ main {
   align-items: center;
   text-align: center;
   width: 30vw;
-
   border-radius: 5px;
 }
 
@@ -82,10 +81,10 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .Reviews--List--Card img {
   width: 100%;
   height: 10vh;
-  margin-top: 15px;
   object-fit: cover;
   border-radius: 5px;
 }

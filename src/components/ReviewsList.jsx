@@ -70,7 +70,7 @@ const ReviewsList = () => {
                 <h3>{title}</h3>
                 <section className="Reviews--List--Card--Info">
                   <p>User: {owner}</p>
-                  <p>Votes: {votes}</p>
+                  <p id="VoteCount">{votes >= 0 ? `+${votes}` : `-${votes}`}</p>
                   <p>Posted: {created_at.slice(0, 10)}</p>
                 </section>
                 <Link to={`/reviews/${review_id}`}>
