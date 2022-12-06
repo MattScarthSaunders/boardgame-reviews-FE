@@ -105,13 +105,16 @@ main {
 
 .Reviews--List--Card a button {
   color: #b5c8bd;
-  border: 1px solid #2c3a3c;
+  border: none;
   background-color: #39706c;
   padding: 5px;
   border-radius: 5px;
-}
-.Reviews--List--Card a button:hover {
   cursor: pointer;
+}
+.Reviews--List--Card a button:active {
+  color: #2c3a3c;
+  background-color: #b5c8bd;
+  border: 1px solid #2c3a3c;
 }
 
 /* ---------------------------REVIEW--------------------------- */
@@ -197,6 +200,31 @@ main {
 
 .Comment--InputForm {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Comment--InputForm textarea {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.Comment--InputForm button {
+  color: #b5c8bd;
+  background-color: #39706c;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.Comment--InputForm button:active {
+  background-color: #b5c8bd;
+  color: #2c3a3c;
+  border: 1px solid #2c3a3c;
 }
 /* ---------------------------VOTING--------------------------- */
 .Votes {
