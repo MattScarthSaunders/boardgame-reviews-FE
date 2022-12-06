@@ -116,19 +116,21 @@ main {
 
 /* ---------------------------REVIEW--------------------------- */
 .Review {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
   padding: 20px;
   background-color: #b5c8bd;
   margin: 5px;
   border-radius: 5px;
+  height: 100%;
 }
 
 .Review--Img {
-  max-width: 40vw;
-  max-height: 50vh;
+  max-width: 70vw;
+  max-height: 30vh;
   grid-column: 1;
   grid-row: 1;
   border-radius: 5px;
@@ -154,13 +156,13 @@ main {
 }
 
 .Comments {
-  grid-column: span 2;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
   margin: 10px 0;
   max-width: 95%;
+  background-color: #b5c8bd;
 }
 
 .Comments--List {
