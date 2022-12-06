@@ -76,6 +76,25 @@ main {
   padding: 10px;
   background-color: #2c3a3c;
 }
+.Categories--Container {
+  background-color: #2c3a3c;
+  height: 27vh;
+  width: 30vw;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.Categories--List {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Categories--List li:hover {
+  padding: 3px 0;
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
 
 /* ------------------------REVIEW LIST------------------------- */
 
