@@ -9,12 +9,21 @@ import {
 const Votes = ({ type, review, comment, voteId }) => {
   const [reviewIncrement, setReviewIncrement] = useState(0);
   const [commentIncrement, setCommentIncrement] = useState(0);
+  const [hasUpVoted, setHasUpVoted] = useState(false);
+  const [hasDownVoted, setHasDownVoted] = useState(false);
 
   const handleUpVote = (type, id) => {
     let valueChange = 0;
 
-    if (type === "review" && reviewIncrement < 1) {
-      valueChange = reviewIncrement < 0 ? 2 : 1;
+    setHasUpVoted((currState) => {
+      return !currState;
+    });
+    setHasDownVoted((currState) => {
+      return currState ? !currState : currState;
+    });
+
+    if (type === "review") {
+      valueChange = reviewIncrement < 0 ? 2 : reviewIncrement < 1 ? 1 : -1;
 
       setReviewIncrement((currInc) => {
         return currInc + valueChange;
@@ -28,8 +37,8 @@ const Votes = ({ type, review, comment, voteId }) => {
       });
     }
 
-    if (type === "comment" && commentIncrement < 1) {
-      valueChange = commentIncrement < 0 ? 2 : 1;
+    if (type === "comment") {
+      valueChange = commentIncrement < 0 ? 2 : commentIncrement < 1 ? 1 : -1;
 
       setCommentIncrement((currInc) => {
         return currInc + valueChange;
@@ -42,21 +51,21 @@ const Votes = ({ type, review, comment, voteId }) => {
         }
       });
     }
-
-    if (reviewIncrement > 1) {
-      setReviewIncrement(1);
-    }
-
-    if (commentIncrement > 1) {
-      setCommentIncrement(1);
-    }
   };
 
   const handleDownVote = (type, id) => {
     let valueChange = 0;
 
-    if (type === "review" && reviewIncrement > -1) {
-      valueChange = reviewIncrement > 0 ? 2 : 1;
+    setHasUpVoted((currState) => {
+      return currState ? !currState : currState;
+    });
+    setHasDownVoted((currState) => {
+      return !currState;
+    });
+
+    if (type === "review") {
+      valueChange = reviewIncrement > 0 ? 2 : reviewIncrement > -1 ? 1 : -1;
+      // valueChange = reviewIncrement > -1 ? 1 : -1;
 
       setReviewIncrement((currInc) => {
         return currInc - valueChange;
@@ -70,8 +79,10 @@ const Votes = ({ type, review, comment, voteId }) => {
       });
     }
 
-    if (type === "comment" && commentIncrement > -1) {
-      valueChange = commentIncrement > 0 ? 2 : 1;
+    if (type === "comment") {
+      valueChange = commentIncrement > 0 ? 2 : commentIncrement > -1 ? 1 : -1;
+
+      // valueChange = commentIncrement > -1 ? 1 : -1;
 
       setCommentIncrement((currInc) => {
         return currInc - valueChange;
@@ -83,14 +94,6 @@ const Votes = ({ type, review, comment, voteId }) => {
           });
         }
       });
-    }
-
-    if (reviewIncrement < -1) {
-      setReviewIncrement(-1);
-    }
-
-    if (commentIncrement < -1) {
-      setCommentIncrement(-1);
     }
   };
 
@@ -109,17 +112,17 @@ const Votes = ({ type, review, comment, voteId }) => {
         </p>
       ) : null}
       <button
-        className="Vote--Button"
-        onClick={() => {
-          handleUpVote(type, voteId);
+        className={`Vote--Button ${hasUpVoted ? "upVote" : "neutralVote"}`}
+        onClick={(e) => {
+          handleUpVote(type, voteId, e);
         }}
       >
         ▲
       </button>
       <button
-        className="Vote--Button"
-        onClick={() => {
-          handleDownVote(type, voteId);
+        className={`Vote--Button ${hasDownVoted ? "downVote" : "neutralVote"}`}
+        onClick={(e) => {
+          handleDownVote(type, voteId, e);
         }}
       >
         ▼

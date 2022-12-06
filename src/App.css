@@ -207,3 +207,21 @@ main {
   color: #39706c;
   cursor: pointer;
 }
+
+.upVote {
+  color: rgb(62, 168, 0);
+  background: none;
+  border: none;
+}
+
+.downVote {
+  color: rgb(184, 43, 43);
+  background: none;
+  border: none;
+}
+
+.neutralVote {
+  color: black;
+  background: none;
+  border: none;
+}
