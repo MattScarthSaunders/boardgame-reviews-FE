@@ -97,10 +97,10 @@ const Votes = ({ type, review, comment, voteId }) => {
   return (
     <section className="Votes">
       {type === "review" ? (
-        <p>
+        <label>
           <strong>Votes: </strong>
           {review.votes + reviewIncrement}
-        </p>
+        </label>
       ) : null}
       {type === "comment" ? (
         <p>

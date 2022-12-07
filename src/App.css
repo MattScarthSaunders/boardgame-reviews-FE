@@ -129,6 +129,7 @@ main {
 button {
   padding: 3px;
 }
+
 .Reviews--Paginator {
   margin: 5px;
   display: flex;
@@ -159,6 +160,7 @@ button {
   text-align: center;
   width: 30vw;
   border-radius: 5px;
+  padding-bottom: 5px;
 }
 
 .Reviews--List--Card:hover {

@@ -8,14 +8,22 @@ const Review = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [reviewLoading, setReviewLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!review.length) {
       setReviewLoading(true);
-      getReview(review_id).then((response) => {
-        setReview(response);
-        setReviewLoading(false);
-      });
+      getReview(review_id)
+        .then((response) => {
+          setReview(response);
+          setReviewLoading(false);
+        })
+        .catch((err) => {
+          if (err) {
+            setReviewLoading(false);
+            setError("This review does not exist!");
+          }
+        });
     }
   }, []);
 
@@ -24,6 +32,8 @@ const Review = () => {
       <div className="loader"></div>
       <p>loading...</p>
     </>
+  ) : error ? (
+    <h2>{error}</h2>
   ) : (
     <>
       <section className="Review">

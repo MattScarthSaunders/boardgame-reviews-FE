@@ -9,15 +9,22 @@ const Comments = ({ review_id }) => {
   const [commentToDelete, setCommentToDelete] = useState([]);
   const [failedDelete, setFailedDelete] = useState("");
   const [deleting, setDeleting] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!comments.length) {
       setCommentsLoading(true);
 
-      getCommentsByReview(review_id).then((response) => {
-        setComments(response);
-        setCommentsLoading(false);
-      });
+      getCommentsByReview(review_id)
+        .then((response) => {
+          setComments(response);
+          setCommentsLoading(false);
+        })
+        .catch((err) => {
+          if (err) {
+            setError("Could not retrieve comments. Please try again later.");
+          }
+        });
     }
   }, []);
 
@@ -55,6 +62,8 @@ const Comments = ({ review_id }) => {
       <div className="loader"></div>
       <p>loading...</p>
     </>
+  ) : error ? (
+    <h2>{error}</h2>
   ) : (
     <section className="Comments">
       <h3>Comments</h3>

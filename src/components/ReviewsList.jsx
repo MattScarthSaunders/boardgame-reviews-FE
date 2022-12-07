@@ -19,22 +19,34 @@ const ReviewsList = () => {
 
   //ux
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   //functions
   useEffect(() => {
     setIsLoading(true);
-    getReviews(page, resultLimit, category, sortValues).then((response) => {
-      setReviews(response.reviews);
-      setReviewCount(response.total_count);
-      let newPages;
-      if (response.reviews.length >= 10) {
-        newPages = new Array(Math.ceil(response.total_count / resultLimit));
-      } else {
-        newPages = new Array(Math.ceil(response.reviews.length / resultLimit));
-      }
-      setPages(newPages.fill());
-      setIsLoading(false);
-    });
+    getReviews(page, resultLimit, category, sortValues)
+      .then((response) => {
+        setReviews(response.reviews);
+        setReviewCount(response.total_count);
+        let newPages;
+        if (response.reviews.length >= 10) {
+          newPages = new Array(Math.ceil(response.total_count / resultLimit));
+        } else {
+          newPages = new Array(
+            Math.ceil(response.reviews.length / resultLimit)
+          );
+        }
+        setPages(newPages.fill());
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err) {
+          if (err) {
+            setIsLoading(false);
+            setError("This review does not exist!");
+          }
+        }
+      });
   }, [resultLimit, page, category, sortValues]);
 
   return isLoading ? (
@@ -42,6 +54,8 @@ const ReviewsList = () => {
       <div className="loader"></div>
       <p>loading...</p>
     </>
+  ) : error ? (
+    <h2>These reviews do not exist!</h2>
   ) : (
     <>
       <section className="Reviews--Filtering">
@@ -60,7 +74,7 @@ const ReviewsList = () => {
             <option>50</option>
           </select>
           {reviewCount > resultLimit ? (
-            <label forHtml="PageSelect0">Page:</label>
+            <label htmlFor="PageSelect0">Page:</label>
           ) : null}
           {pages.length > 1
             ? pages.map((page, index) => {
