@@ -5,13 +5,10 @@ import { getCategories } from "./api";
 const Categories = () => {
   const [isHidden, setIsHidden] = useState("Hide");
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
     getCategories().then((response) => {
       setCategories(response);
-      setIsLoading(false);
     });
   }, []);
 
