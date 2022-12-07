@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Review from "./components/Review";
 import ReviewsList from "./components/ReviewsList";
@@ -10,7 +9,7 @@ function App() {
   const headers = useMemo(() => {
     return (
       <header>
-        <Header />
+        <h1>Boardgame Reviews</h1>
         <Nav />
       </header>
     );

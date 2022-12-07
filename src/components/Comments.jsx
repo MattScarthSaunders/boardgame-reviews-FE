@@ -7,11 +7,11 @@ const Comments = ({ review_id }) => {
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [commentToDelete, setCommentToDelete] = useState([]);
+
+  // ux
   const [failedDelete, setFailedDelete] = useState("");
   const [deleting, setDeleting] = useState("");
   const [error, setError] = useState("");
-
-  console.log(comments);
 
   useEffect(() => {
     if (!comments.length) {
