@@ -6,8 +6,8 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <button tabindex="-1" className="NavButton">
-            <Link to="/">Reviews</Link>
+          <button tabIndex="-1" className="NavButton">
+            <Link to="/">Home</Link>
           </button>
         </li>
         <li>

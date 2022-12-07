@@ -75,3 +75,7 @@ export const postComment = (comment, review_id) => {
       return response.data.comment;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return reviewsAPI.delete(`/comments/${comment_id}`);
+};
