@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews } from "./api";
-// import { ReviewsContext } from "./contexts/ReviewContext";
 
 const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
@@ -20,17 +19,24 @@ const ReviewsList = () => {
   useEffect(() => {
     setIsLoading(true);
     getReviews(page, resultLimit, category).then((response) => {
-      console.log(response.total_count);
       setReviews(response.reviews);
       setReviewCount(response.total_count);
-      const newPages = new Array(Math.ceil(response.total_count / resultLimit));
+      let newPages;
+      if (response.reviews.length > 10) {
+        newPages = new Array(Math.ceil(response.total_count / resultLimit));
+      } else {
+        newPages = new Array(Math.ceil(response.reviews.length / resultLimit));
+      }
       setPages(newPages.fill());
       setIsLoading(false);
     });
   }, [resultLimit, page, category]);
 
   return isLoading ? (
-    <p>loading...</p>
+    <>
+      <div className="loader"></div>
+      <p>loading...</p>
+    </>
   ) : (
     <>
       <section className="Reviews--Filtering">
