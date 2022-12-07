@@ -24,16 +24,18 @@ function App() {
       <header>
         <h1>Boardgame Reviews</h1>
         {headers}
-        <button
-          className={`VisualMode--Switch ${mode}`}
-          onClick={(e) => {
-            e.target.value === "light" ? setMode("dark") : setMode("light");
-          }}
-          value={mode}
-        >
-          {mode}
-        </button>
-        <div className="styleSlider"></div>
+        <div className="VisualMode--Container">
+          <button
+            className={`VisualMode--Switch ${mode}`}
+            onClick={(e) => {
+              e.target.value === "light" ? setMode("dark") : setMode("light");
+            }}
+            value={mode}
+          >
+            {mode}
+          </button>
+          <div className="styleSlider"></div>
+        </div>
       </header>
       <main className={`${mode}`}>
         <Routes>
