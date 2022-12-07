@@ -68,7 +68,7 @@ export const patchCommentVotesDown = (comment_id, value) => {
 export const postComment = (comment, review_id) => {
   return reviewsAPI
     .post(`/reviews/${review_id}/comments`, {
-      username: "jessjelly",
+      username: "visitor",
       body: comment,
     })
     .then((response) => {

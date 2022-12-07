@@ -3,6 +3,7 @@ import { useState } from "react";
 const ReviewFilter = ({ setSortValues, sortValues }) => {
   let tempSortValue = sortValues.sort_by;
   if (sortValues.sort_by === "created_at") tempSortValue = "Posted";
+  if (sortValues.sort_by === "comment_count") tempSortValue = "Comments";
 
   const [selectValue, setSelectValue] = useState(tempSortValue);
   const [orderValue, setOrderValue] = useState(sortValues.order);
@@ -28,6 +29,7 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
     e.preventDefault();
     let checkedSelectValue = selectValue;
     if (selectValue === "Posted") checkedSelectValue = "created_at";
+    if (selectValue === "Comments") checkedSelectValue = "comment_count";
 
     setSortValues((currValues) => {
       let newValues = { ...currValues };

@@ -144,7 +144,6 @@ button {
   flex-wrap: wrap;
   gap: 10px;
   list-style-type: none;
-  flex-grow: 3;
 }
 
 .Reviews--List--Card {
@@ -152,7 +151,7 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 30vw;
+  width: 45vw;
   border-radius: 5px;
   padding-bottom: 5px;
 }
@@ -435,6 +434,10 @@ button {
 
   .Reviews--List {
     gap: 20px;
+  }
+
+  .Reviews--List--Card {
+    width: 30vw;
   }
 
   .Reviews--List--Card img {
