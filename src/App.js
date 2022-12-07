@@ -25,7 +25,7 @@ function App() {
         <h1>Boardgame Reviews</h1>
         {headers}
         <button
-          className="VisualMode--Switch"
+          className={`VisualMode--Switch ${mode}`}
           onClick={(e) => {
             e.target.value === "light" ? setMode("dark") : setMode("light");
           }}
@@ -33,6 +33,7 @@ function App() {
         >
           {mode}
         </button>
+        <div className="styleSlider"></div>
       </header>
       <main className={`${mode}`}>
         <Routes>

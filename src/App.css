@@ -20,14 +20,6 @@ header {
   background: #2c3a3c;
 }
 
-.VisualMode--Switch {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-right: 3vw;
-  margin-top: 3vw;
-}
-
 h1 {
   color: #b5c8bd;
   margin: 8px;
@@ -481,6 +473,46 @@ button {
 }
 
 /* ------------------------DarkMode------------------------- */
+
+.dark,
+.light {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.styleSlider {
+  width: 50px;
+  height: 20px;
+  background-color: #39706c;
+  border: 1px solid #b5c8bd;
+  border-radius: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 3vw;
+  margin-top: 4.4vw;
+  z-index: -1;
+}
+
+.VisualMode--Switch {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 3vw;
+  margin-top: 3vw;
+  border-radius: 50%;
+  border: none;
+  padding: 7px;
+  background-color: #b5c8bd;
+  color: #1a2122;
+  transition: transform 0.5s, background-color 0.5s;
+}
+
+.VisualMode--Switch.dark {
+  background-color: #1a2122;
+  color: #b5c8bd;
+  transform: translateX(-20px);
+  transition: transform 1s, background-color 1s;
+}
 
 .App.dark {
   background-color: #1a2122;
