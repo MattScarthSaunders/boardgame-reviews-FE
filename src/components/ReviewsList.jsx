@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews } from "./api";
-import { ReviewsContext } from "./contexts/ReviewContext";
+// import { ReviewsContext } from "./contexts/ReviewContext";
 
 const ReviewsList = () => {
-  const { reviews, setReviews } = useContext(ReviewsContext);
+  const [reviews, setReviews] = useState([]);
 
   //filtering
   const { category } = useParams();
@@ -20,14 +20,13 @@ const ReviewsList = () => {
   useEffect(() => {
     setIsLoading(true);
     getReviews(page, resultLimit, category).then((response) => {
+      console.log(response.total_count);
       setReviews(response.reviews);
       setReviewCount(response.total_count);
       const newPages = new Array(Math.ceil(response.total_count / resultLimit));
       setPages(newPages.fill());
       setIsLoading(false);
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resultLimit, page, category]);
 
   return isLoading ? (

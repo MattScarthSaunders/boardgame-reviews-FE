@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { getCategories } from "./api";
 
 const Categories = () => {
+  const [isHidden, setIsHidden] = useState("Hide");
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isHidden, setIsHidden] = useState("Hide");
 
   useEffect(() => {
     setIsLoading(true);
