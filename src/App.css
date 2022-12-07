@@ -338,7 +338,7 @@ button {
   padding: 5px;
   border: 3px solid #b5c8bd;
   border-radius: 5px;
-  max-width: 100%;
+  align-self: center;
 }
 
 .Comment--Delete button {
@@ -356,6 +356,11 @@ button {
   border: none;
   cursor: pointer;
   margin-left: 10vw;
+}
+
+#failedDelete {
+  align-self: center;
+  color: red;
 }
 /* ---------------------------VOTING--------------------------- */
 .Votes {

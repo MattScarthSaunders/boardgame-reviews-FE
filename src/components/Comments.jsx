@@ -11,6 +11,8 @@ const Comments = ({ review_id }) => {
   const [deleting, setDeleting] = useState("");
   const [error, setError] = useState("");
 
+  console.log(comments);
+
   useEffect(() => {
     if (!comments.length) {
       setCommentsLoading(true);
@@ -44,6 +46,7 @@ const Comments = ({ review_id }) => {
             return newComments;
           });
           setCommentToDelete([]);
+          setDeleting("");
         })
         .catch((err) => {
           if (err) {
@@ -67,7 +70,11 @@ const Comments = ({ review_id }) => {
   ) : (
     <section className="Comments">
       <h3>Comments</h3>
-      <CommentInput review_id={review_id} setComments={setComments} />
+      <CommentInput
+        review_id={review_id}
+        comments={comments}
+        setComments={setComments}
+      />
       {comments.length < 1 ? (
         <p>There are no comments yet!</p>
       ) : (
