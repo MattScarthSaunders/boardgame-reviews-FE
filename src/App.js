@@ -13,17 +13,28 @@ function App() {
 
   const headers = useMemo(() => {
     return (
-      <header>
-        <h1>Boardgame Reviews</h1>
+      <>
         <Nav />
-      </header>
+      </>
     );
   }, []);
 
   return (
     <div className="App">
-      {headers}
-      <main>
+      <header>
+        <h1>Boardgame Reviews</h1>
+        {headers}
+        <button
+          className="VisualMode--Switch"
+          onClick={(e) => {
+            e.target.value === "light" ? setMode("dark") : setMode("light");
+          }}
+          value={mode}
+        >
+          {mode}
+        </button>
+      </header>
+      <main className={`${mode}`}>
         <Routes>
           <Route path="/" element={<ReviewsList />} />
           <Route path="/:category" element={<ReviewsList />} />

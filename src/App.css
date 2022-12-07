@@ -20,6 +20,14 @@ header {
   background: #2c3a3c;
 }
 
+.VisualMode--Switch {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 3vw;
+  margin-top: 3vw;
+}
+
 h1 {
   color: #b5c8bd;
   margin: 8px;
@@ -66,6 +74,7 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 /* ------------------------Categories------------------------- */
 
 .Hide {
@@ -253,7 +262,7 @@ button {
   justify-items: center;
   align-items: center;
   margin: 10px 0;
-  max-width: 100%;
+  width: 75vw;
   background-color: #b5c8bd;
 }
 
@@ -268,7 +277,7 @@ button {
 
 .Comment {
   border: 1px solid grey;
-  width: 100%;
+  width: 75vw;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -469,4 +478,48 @@ button {
     font-size: 1.3rem;
     font-weight: bolder;
   }
+}
+
+/* ------------------------DarkMode------------------------- */
+
+body.dark {
+  background-color: #1a2122;
+}
+
+main.dark {
+  background-color: #1a2122;
+  color: #b5c8bd;
+}
+
+.Reviews--List--Card:hover.dark {
+  color: #b5c8bd;
+  background-color: #2c3a3c;
+}
+
+.Reviews--List--Card.dark h3 {
+  color: #b5c8bd;
+}
+
+.Reviews--Filtering.dark {
+  background-color: #2c3a3c;
+  color: #b5c8bd;
+}
+
+.Review.dark {
+  background-color: #2c3a3c;
+}
+
+.Review.dark h2 {
+  color: #b5c8bd;
+}
+
+.Review.dark h3 {
+  color: #91c7a5;
+}
+
+.Comments.dark {
+  background-color: #2c3a3c;
+}
+.Comment.dark {
+  background-color: #39706c;
 }
