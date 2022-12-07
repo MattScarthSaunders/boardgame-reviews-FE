@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postComment } from "./api";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const CommentInput = ({ review_id, comments, setComments }) => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const [input, setInput] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
 
@@ -59,7 +64,7 @@ const CommentInput = ({ review_id, comments, setComments }) => {
         onSubmit={(e) => {
           handleSubmit(e, input, review_id);
         }}
-        className="Comment--InputForm"
+        className={`Comment--InputForm ${mode}`}
       >
         <textarea
           placeholder="Add a comment..."

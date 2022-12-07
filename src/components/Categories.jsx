@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "./api";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const Categories = () => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const [isHidden, setIsHidden] = useState("Hide");
   const [categories, setCategories] = useState([]);
 
@@ -26,10 +31,14 @@ const Categories = () => {
 
   return (
     <>
-      <button ref={ref} className="NavButton" onClick={showCategories}>
+      <button
+        ref={ref}
+        className={`NavButton ${mode}`}
+        onClick={showCategories}
+      >
         Categories
       </button>
-      <section className={`Categories--Container ${isHidden}`}>
+      <section className={`Categories--Container ${isHidden} ${mode}`}>
         <ul className="Categories--List">
           {categories.map(({ slug }) => {
             return (

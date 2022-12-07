@@ -1,9 +1,14 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useContext } from "react";
 import { deleteComment, getCommentsByReview } from "./api";
 import CommentInput from "./CommentInput";
+import { VisualModeContext } from "./context/VisualModeContext";
 import Votes from "./Votes";
 
 const Comments = ({ review_id }) => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [commentToDelete, setCommentToDelete] = useState([]);
@@ -62,13 +67,13 @@ const Comments = ({ review_id }) => {
 
   return commentsLoading ? (
     <>
-      <div className="loader"></div>
+      <div className={`loader ${mode}`}></div>
       <p>loading...</p>
     </>
   ) : error ? (
     <h2>{error}</h2>
   ) : (
-    <section className="Comments">
+    <section className={`Comments ${mode}`}>
       <h3>Comments</h3>
       <CommentInput
         review_id={review_id}
@@ -78,12 +83,12 @@ const Comments = ({ review_id }) => {
       {comments.length < 1 ? (
         <p>There are no comments yet!</p>
       ) : (
-        <ul className="Comments--List">
+        <ul className={`Comments--List ${mode}`}>
           {comments.map((comment, index) => {
             return (
               <Fragment key={comment.comment_id}>
-                <li className={`Comment ${deleting}`}>
-                  <section className="Comment--Header">
+                <li className={`Comment ${deleting} ${mode}`}>
+                  <section className={`Comment--Header ${mode}`}>
                     <h4>{comment.author}</h4>
                     <p>{comment.created_at.slice(0, 10)}</p>
                     <Votes
@@ -104,11 +109,11 @@ const Comments = ({ review_id }) => {
                       X
                     </button>
                   </section>
-                  <p className="Comment--Body">{comment.body}</p>
+                  <p className={`Comment--Body ${mode}`}>{comment.body}</p>
                 </li>
                 {commentToDelete.length &&
                 commentToDelete[0] === comment.comment_id ? (
-                  <section className="Comment--Delete">
+                  <section className={`Comment--Delete ${mode}`}>
                     <p tabIndex="0">Delete Comment - are you sure?</p>
                     <button onClick={handleDeleteCheck} value={true}>
                       Yes

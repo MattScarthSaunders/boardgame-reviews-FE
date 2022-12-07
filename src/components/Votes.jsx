@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   patchCommentVotesDown,
   patchCommentVotesUp,
   patchReviewVotesDown,
   patchReviewVotesUp,
 } from "./api";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const Votes = ({ type, review, comment, voteId }) => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
   const [reviewIncrement, setReviewIncrement] = useState(0);
   const [commentIncrement, setCommentIncrement] = useState(0);
   const [hasUpVoted, setHasUpVoted] = useState(false);
@@ -95,7 +99,7 @@ const Votes = ({ type, review, comment, voteId }) => {
   };
 
   return (
-    <section className="Votes">
+    <section className={`Votes ${mode}`}>
       {type === "review" ? (
         <label>
           <strong>Votes: </strong>
@@ -109,7 +113,9 @@ const Votes = ({ type, review, comment, voteId }) => {
         </p>
       ) : null}
       <button
-        className={`Vote--Button ${hasUpVoted ? "upVote" : "neutralVote"}`}
+        className={`Vote--Button ${
+          hasUpVoted ? "upVote" : "neutralVote"
+        } ${mode}`}
         onClick={(e) => {
           handleUpVote(type, voteId, e);
         }}
@@ -117,7 +123,9 @@ const Votes = ({ type, review, comment, voteId }) => {
         ▲
       </button>
       <button
-        className={`Vote--Button ${hasDownVoted ? "downVote" : "neutralVote"}`}
+        className={`Vote--Button ${
+          hasDownVoted ? "downVote" : "neutralVote"
+        } ${mode}`}
         onClick={(e) => {
           handleDownVote(type, voteId, e);
         }}

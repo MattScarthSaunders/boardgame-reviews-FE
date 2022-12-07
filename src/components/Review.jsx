@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReview } from "./api";
 import Comments from "./Comments";
+import { VisualModeContext } from "./context/VisualModeContext";
 import Votes from "./Votes";
 
 const Review = () => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const { review_id } = useParams();
   const [review, setReview] = useState({});
   const [reviewLoading, setReviewLoading] = useState(true);
@@ -29,25 +34,25 @@ const Review = () => {
 
   return reviewLoading ? (
     <>
-      <div className="loader"></div>
+      <div className={`loader ${mode}`}></div>
       <p>loading...</p>
     </>
   ) : error ? (
     <h2>{error}</h2>
   ) : (
     <>
-      <section className="Review">
+      <section className={`Review ${mode}`}>
         <img
-          className="Review--Img"
+          className={`Review--Img ${mode}`}
           src={review.review_img_url}
           alt="review.title"
         />
-        <section className="Review--About">
+        <section className={`Review--About ${mode}`}>
           <h2>{review.title}</h2>
           <h3>Game Designer: {review.designer}</h3>
           <h3>Category: {review.category}</h3>
         </section>
-        <section className="Review--Body">
+        <section className={`Review--Body ${mode}`}>
           <h3>Review:</h3>
           <p>{review.review_body}</p>
           <p>

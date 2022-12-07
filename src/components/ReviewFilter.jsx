@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const ReviewFilter = ({ setSortValues, sortValues }) => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   let tempSortValue = sortValues.sort_by;
   if (sortValues.sort_by === "created_at") tempSortValue = "Posted";
   if (sortValues.sort_by === "comment_count") tempSortValue = "Comments";
@@ -41,14 +46,14 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
 
   return (
     <>
-      <form className="Filtering--Sort--Form" onSubmit={handleSubmit}>
+      <form className={`Filtering--Sort--Form ${mode}`} onSubmit={handleSubmit}>
         <label htmlFor="sortSelector">Sort By:</label>
         <select id="sortSelector" value={selectValue} onChange={handleSelect}>
           {sortOptions.map((option, index) => {
             return <option key={`${option}${index}`}>{option}</option>;
           })}
         </select>
-        <label htmlFor="sortOrderButton" hidden>
+        <label htmlFor={`sortOrderButton ${mode}`} hidden>
           sort order
         </label>
         <button

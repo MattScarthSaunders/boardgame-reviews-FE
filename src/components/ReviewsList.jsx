@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews } from "./api";
+import { VisualModeContext } from "./context/VisualModeContext";
 import ReviewFilter from "./ReviewFilter";
 
 const ReviewsList = () => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const [reviews, setReviews] = useState([]);
 
   //filtering
@@ -51,14 +56,14 @@ const ReviewsList = () => {
 
   return isLoading ? (
     <>
-      <div className="loader"></div>
+      <div className={`loader ${mode}`}></div>
       <p>loading...</p>
     </>
   ) : error ? (
     <h2>These reviews do not exist!</h2>
   ) : (
     <>
-      <section className="Reviews--Filtering">
+      <section className={`Reviews--Filtering ${mode}`}>
         <ReviewFilter setSortValues={setSortValues} sortValues={sortValues} />
         <section className="Reviews--Paginator">
           <label htmlFor="resultLimit">Result Limit:</label>
@@ -93,7 +98,7 @@ const ReviewsList = () => {
             : null}
         </section>
       </section>
-      <ul className="Reviews--List">
+      <ul className={`Reviews--List ${mode}`}>
         {reviews.map(
           ({
             review_id,
@@ -105,10 +110,10 @@ const ReviewsList = () => {
             comment_count,
           }) => {
             return (
-              <li key={review_id} className="Reviews--List--Card">
+              <li key={review_id} className={`Reviews--List--Card ${mode}`}>
                 <img src={review_img_url} alt={title} />
                 <h3>{title}</h3>
-                <section className="Reviews--List--Card--Info">
+                <section className={`Reviews--List--Card--Info ${mode}`}>
                   <p>User: {owner}</p>
                   <p id="VoteCount">{votes >= 0 ? `+${votes}` : `-${votes}`}</p>
                   <p>Posted: {created_at.slice(0, 10)}</p>
