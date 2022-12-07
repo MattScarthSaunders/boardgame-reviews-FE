@@ -42,6 +42,7 @@ a {
   padding: 4px;
   border-radius: 3px;
   background-color: #2c3a3c;
+  cursor: pointer;
 }
 
 nav {
@@ -100,6 +101,30 @@ main {
 
 /* ------------------------REVIEW LIST------------------------- */
 
+.Reviews--Filtering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 30px;
+  margin: 10px 0px;
+  padding: 5px;
+  width: 100%;
+  background-color: #b5c8bd;
+  color: #2c3a3c;
+}
+
+.Filtering--Sort--Form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.Filtering--Sort--Form select,
+button {
+  padding: 3px;
+}
 .Reviews--Paginator {
   margin: 5px;
   display: flex;
@@ -246,6 +271,7 @@ main {
   flex-direction: column;
   background-color: #d6e7dd;
   padding: 10px;
+  padding-top: 5px;
   border-radius: 5px;
 }
 
@@ -253,6 +279,13 @@ main {
   grid-row: 1;
   display: flex;
   gap: 5px;
+  align-items: center;
+}
+
+.Comment--Header h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Comment--Body {
@@ -290,16 +323,17 @@ main {
 /* ---------------------------VOTING--------------------------- */
 .Votes {
   display: flex;
+  align-items: center;
 }
 .Vote--Button {
   background: none;
   border: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-left: 2px;
+  margin-bottom: 5px;
 }
 
 .Vote--Button:hover {
-  color: #39706c;
   cursor: pointer;
 }
 

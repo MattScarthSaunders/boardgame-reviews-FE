@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ReviewFilter = ({ setSortValues, sortValues }) => {
   let tempSortValue = sortValues.sort_by;
-  if (sortValues.sort_by === "created_at") tempSortValue = "Review Date";
+  if (sortValues.sort_by === "created_at") tempSortValue = "Posted";
+
   const [selectValue, setSelectValue] = useState(tempSortValue);
   const [orderValue, setOrderValue] = useState(sortValues.order);
 
@@ -10,7 +11,7 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
     "Title",
     "Designer",
     "Category",
-    "Review Date",
+    "Posted",
     "Votes",
     "Comments",
   ];
@@ -26,7 +27,8 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let checkedSelectValue = selectValue;
-    if (selectValue === "Review Date") checkedSelectValue = "created_at";
+    if (selectValue === "Posted") checkedSelectValue = "created_at";
+
     setSortValues((currValues) => {
       let newValues = { ...currValues };
       newValues.sort_by = checkedSelectValue.toLowerCase();
@@ -38,13 +40,21 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
   return (
     <>
       <form className="Filtering--Sort--Form" onSubmit={handleSubmit}>
-        <label htmlFor="sortSelector">Sort By</label>
+        <label htmlFor="sortSelector">Sort By:</label>
         <select id="sortSelector" value={selectValue} onChange={handleSelect}>
           {sortOptions.map((option, index) => {
             return <option key={`${option}${index}`}>{option}</option>;
           })}
         </select>
-        <button type="button" onClick={handleOrder} value={orderValue}>
+        <label htmlFor="sortOrderButton" hidden>
+          sort order
+        </label>
+        <button
+          id="sortOrderButton"
+          type="button"
+          onClick={handleOrder}
+          value={orderValue}
+        >
           {orderValue}
         </button>
         <button type="submit">Sort Results</button>

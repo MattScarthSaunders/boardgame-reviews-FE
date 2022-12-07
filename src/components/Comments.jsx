@@ -36,7 +36,7 @@ const Comments = ({ review_id }) => {
               <li key={comment.comment_id} className="Comment">
                 <section className="Comment--Header">
                   <h4>{comment.author}</h4>
-                  <p>On {comment.created_at.slice(0, 10)}</p>
+                  <p>{comment.created_at.slice(0, 10)}</p>
                   <Votes
                     type="comment"
                     comment={comment}

@@ -6,7 +6,7 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <button className="NavButton">
+          <button tabindex="-1" className="NavButton">
             <Link to="/">Reviews</Link>
           </button>
         </li>

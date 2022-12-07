@@ -65,7 +65,6 @@ const Votes = ({ type, review, comment, voteId }) => {
 
     if (type === "review") {
       valueChange = reviewIncrement > 0 ? 2 : reviewIncrement > -1 ? 1 : -1;
-      // valueChange = reviewIncrement > -1 ? 1 : -1;
 
       setReviewIncrement((currInc) => {
         return currInc - valueChange;
@@ -81,8 +80,6 @@ const Votes = ({ type, review, comment, voteId }) => {
 
     if (type === "comment") {
       valueChange = commentIncrement > 0 ? 2 : commentIncrement > -1 ? 1 : -1;
-
-      // valueChange = commentIncrement > -1 ? 1 : -1;
 
       setCommentIncrement((currInc) => {
         return currInc - valueChange;
