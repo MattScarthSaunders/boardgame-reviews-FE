@@ -76,7 +76,7 @@ const Comments = ({ review_id }) => {
                       voteId={comment.comment_id}
                     />
                     <label htmlFor="deleteButton" hidden>
-                      delete
+                      delete comment
                     </label>
                     <button
                       id="deleteButton"
