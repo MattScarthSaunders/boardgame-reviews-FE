@@ -19,7 +19,10 @@ const Comments = ({ review_id }) => {
   }, []);
 
   return commentsLoading ? (
-    <p>Loading Comments...</p>
+    <>
+      <div className="loader"></div>
+      <p>loading...</p>
+    </>
   ) : (
     <section className="Comments">
       <h3>Comments</h3>

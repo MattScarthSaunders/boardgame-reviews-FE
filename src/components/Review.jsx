@@ -20,7 +20,10 @@ const Review = () => {
   }, []);
 
   return reviewLoading ? (
-    <p>Loading Review...</p>
+    <>
+      <div className="loader"></div>
+      <p>loading...</p>
+    </>
   ) : (
     <>
       <section className="Review">
