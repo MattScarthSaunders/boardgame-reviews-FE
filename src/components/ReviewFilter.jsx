@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 
-const ReviewFilter = ({ setSortValues }) => {
-  const [selectValue, setSelectValue] = useContext("");
-  const [orderValue, setOrderValue] = useContext("desc");
+const ReviewFilter = ({ setSortValues, sortValues }) => {
+  let tempSortValue = sortValues.sort_by;
+  if (sortValues.sort_by === "created_at") tempSortValue = "Review Date";
+  const [selectValue, setSelectValue] = useState(tempSortValue);
+  const [orderValue, setOrderValue] = useState(sortValues.order);
 
   const sortOptions = [
     "Title",
@@ -21,10 +23,13 @@ const ReviewFilter = ({ setSortValues }) => {
     e.target.value === "desc" ? setOrderValue("asc") : setOrderValue("desc");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let checkedSelectValue = selectValue;
+    if (selectValue === "Review Date") checkedSelectValue = "created_at";
     setSortValues((currValues) => {
       let newValues = { ...currValues };
-      newValues.sort_by = selectValue;
+      newValues.sort_by = checkedSelectValue.toLowerCase();
       newValues.order = orderValue;
       return newValues;
     });
@@ -42,8 +47,8 @@ const ReviewFilter = ({ setSortValues }) => {
         <button type="button" onClick={handleOrder} value={orderValue}>
           {orderValue}
         </button>
+        <button type="submit">Sort Results</button>
       </form>
-      {/* pagination can go here */}
     </>
   );
 };

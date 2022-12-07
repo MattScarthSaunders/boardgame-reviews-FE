@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews } from "./api";
+import ReviewFilter from "./ReviewFilter";
 
 const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
 
   //filtering
   const { category } = useParams();
+  const [sortValues, setSortValues] = useState({
+    sort_by: "created_at",
+    order: "desc",
+  });
   const [reviewCount, setReviewCount] = useState(0);
   const [resultLimit, setResultLimit] = useState(10);
   const [pages, setPages] = useState([]);
@@ -18,11 +23,11 @@ const ReviewsList = () => {
   //functions
   useEffect(() => {
     setIsLoading(true);
-    getReviews(page, resultLimit, category).then((response) => {
+    getReviews(page, resultLimit, category, sortValues).then((response) => {
       setReviews(response.reviews);
       setReviewCount(response.total_count);
       let newPages;
-      if (response.reviews.length > 10) {
+      if (response.reviews.length >= 10) {
         newPages = new Array(Math.ceil(response.total_count / resultLimit));
       } else {
         newPages = new Array(Math.ceil(response.reviews.length / resultLimit));
@@ -30,7 +35,7 @@ const ReviewsList = () => {
       setPages(newPages.fill());
       setIsLoading(false);
     });
-  }, [resultLimit, page, category]);
+  }, [resultLimit, page, category, sortValues]);
 
   return isLoading ? (
     <>
@@ -40,6 +45,7 @@ const ReviewsList = () => {
   ) : (
     <>
       <section className="Reviews--Filtering">
+        <ReviewFilter setSortValues={setSortValues} sortValues={sortValues} />
         <section className="Reviews--Paginator">
           <label htmlFor="resultLimit">Result Limit:</label>
           <select

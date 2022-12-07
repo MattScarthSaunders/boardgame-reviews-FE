@@ -4,13 +4,28 @@ const reviewsAPI = axios.create({
   baseURL: "https://boardgame-reviews.cyclic.app/api",
 });
 
-export const getReviews = (page = 0, limit = 10, category) => {
+export const getReviews = (
+  page = 0,
+  limit = 10,
+  category,
+  { sort_by, order }
+) => {
   let chosenCategory = category;
-  if (category === "All") {
-    chosenCategory = null;
-  }
+  if (category === "All") chosenCategory = null;
+
+  let sort = sort_by;
+  if (!sort_by) sort = null;
+
   return reviewsAPI
-    .get("/reviews", { params: { p: page, limit, category: chosenCategory } })
+    .get("/reviews", {
+      params: {
+        p: page,
+        limit,
+        category: chosenCategory,
+        sort_by: sort,
+        order,
+      },
+    })
     .then((response) => {
       return response.data;
     });
