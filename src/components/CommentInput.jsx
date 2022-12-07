@@ -71,7 +71,11 @@ const CommentInput = ({ review_id, comments, setComments }) => {
           onChange={handleInput}
           value={input}
         ></textarea>
-        <button type="submit" disabled={false}>
+        <button
+          className={`SubmitButton ${mode}`}
+          type="submit"
+          disabled={false}
+        >
           Submit
         </button>
       </form>

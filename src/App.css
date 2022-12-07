@@ -325,7 +325,7 @@ button {
 .Comment--InputForm button {
   color: #b5c8bd;
   background-color: #39706c;
-  padding: 5px;
+  padding: 10px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -482,6 +482,11 @@ button {
 
 /* ------------------------DarkMode------------------------- */
 
+.App.dark {
+  background-color: #1a2122;
+  height: 100vh;
+}
+
 body.dark {
   background-color: #1a2122;
 }
@@ -520,6 +525,24 @@ main.dark {
 .Comments.dark {
   background-color: #2c3a3c;
 }
+
 .Comment.dark {
   background-color: #39706c;
+}
+
+.SubmitButton.dark {
+  background-color: #2c3a3c;
+  border: 2px solid #b5c8bd;
+}
+
+.Vote--Button.dark {
+  color: #b5c8bd;
+}
+
+.Vote--Button.dark.upVote {
+  color: rgb(62, 168, 0);
+}
+
+.Vote--Button.dark.downVote {
+  color: rgb(184, 43, 43);
 }

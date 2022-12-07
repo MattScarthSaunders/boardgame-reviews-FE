@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <header>
         <h1>Boardgame Reviews</h1>
         {headers}
