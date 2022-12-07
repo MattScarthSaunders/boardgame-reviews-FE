@@ -220,7 +220,7 @@ button {
   background-color: #b5c8bd;
   margin: 5px;
   border-radius: 5px;
-  height: 100%;
+  width: 100%;
 }
 
 .Review--Img {
@@ -258,7 +258,7 @@ button {
   justify-items: center;
   align-items: center;
   margin: 10px 0;
-  max-width: 95%;
+  max-width: 100%;
   background-color: #b5c8bd;
 }
 
@@ -268,11 +268,13 @@ button {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  max-width: 100%;
 }
 
 .Comment {
   border: 1px solid grey;
   width: 100%;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -287,6 +289,8 @@ button {
   display: flex;
   gap: 5px;
   align-items: center;
+  width: 100%;
+  position: relative;
 }
 
 .Comment--Header h4 {
@@ -297,6 +301,7 @@ button {
 
 .Comment--Body {
   grid-row: 2;
+  width: 100%;
 }
 
 .Comment--InputForm {
@@ -352,10 +357,12 @@ button {
 }
 
 #deleteButton {
+  position: absolute;
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: 10vw;
+  font-weight: bolder;
+  right: 0;
 }
 
 #failedDelete {
@@ -413,5 +420,11 @@ button {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .Comment {
+    width: 60vw;
   }
 }
