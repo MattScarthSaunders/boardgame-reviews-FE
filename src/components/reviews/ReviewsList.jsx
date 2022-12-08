@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getReviews } from "./api";
-import { ReviewsContext } from "./context/ReviewsContext";
-import { VisualModeContext } from "./context/VisualModeContext";
-import DeleteItem from "./DeleteItem";
+import { VisualModeContext } from "../context/VisualModeContext";
+import DeleteItem from "./DeleteReview";
+import { useReviews } from "../hooks/useReviews";
 import ReviewFilter from "./ReviewFilter";
 
 const ReviewsList = () => {
@@ -11,7 +10,6 @@ const ReviewsList = () => {
   const { mode } = useContext(VisualModeContext);
   //component
 
-  const { reviews, setReviews } = useContext(ReviewsContext);
   const [deleting, setDeleting] = useState("");
 
   //filtering
@@ -20,43 +18,15 @@ const ReviewsList = () => {
     sort_by: "created_at",
     order: "desc",
   });
-  const [reviewCount, setReviewCount] = useState(0);
   const [resultLimit, setResultLimit] = useState(10);
-  const [pages, setPages] = useState([]);
   const [page, setPage] = useState(0);
 
-  //ux
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  //functions
-  useEffect(() => {
-    setIsLoading(true);
-    setError("");
-    getReviews(page, resultLimit, category, sortValues)
-      .then((response) => {
-        setReviews(response.reviews);
-        setReviewCount(response.total_count);
-        let newPages;
-        if (response.reviews.length >= 10) {
-          newPages = new Array(Math.ceil(response.total_count / resultLimit));
-        } else {
-          newPages = new Array(
-            Math.ceil(response.reviews.length / resultLimit)
-          );
-        }
-        setPages(newPages.fill());
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        if (err) {
-          setIsLoading(false);
-          err.response.status < 500
-            ? setError("These reviews do not exist!")
-            : setError("Could not retrieve reviews. Please try again later");
-        }
-      });
-  }, [resultLimit, page, category, sortValues]);
+  const { reviews, reviewCount, pages, isLoading, error } = useReviews(
+    resultLimit,
+    page,
+    category,
+    sortValues
+  );
 
   return isLoading ? (
     <>
@@ -117,7 +87,6 @@ const ReviewsList = () => {
               >
                 <DeleteItem
                   review={{ review_id, owner }}
-                  setReviews={setReviews}
                   setDeleting={setDeleting}
                 />
 

@@ -250,6 +250,10 @@ main {
   font-weight: bold;
 }
 
+.Categories--List li:hover {
+  text-shadow: 0px 0px 10px #b5c8bd;
+}
+
 /* ------------------------REVIEW LIST------------------------- */
 
 .Reviews--Filtering {
@@ -497,6 +501,9 @@ button {
   margin: 5px 0;
 }
 
+.Review--UserLink a {
+  color: #2c3a3c;
+}
 /* ---------------------------COMMENTS--------------------------- */
 
 .Comments {
@@ -800,6 +807,10 @@ main.dark {
   color: #91c7a5;
 }
 
+.Review--UserLink.dark a {
+  color: #91c7a5;
+}
+
 .Comments.dark {
   background-color: #2c3a3c;
 }
@@ -901,11 +912,6 @@ main.dark {
   .Categories--List {
     gap: 5px;
     margin: 0;
-  }
-
-  .Categories--List li:hover {
-    text-shadow: 0px 0px 10px #b5c8bd;
-    width: 30vw;
   }
 
   .VisualMode--Container {

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { getCommentsByReview, postComment } from "./api";
-import { UserContext } from "./context/UserContext";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { getCommentsByReview, postComment } from "../api";
+import { UserContext } from "../context/UserContext";
+import { VisualModeContext } from "../context/VisualModeContext";
 
 const CommentInput = ({ review_id, setComments, setError }) => {
   //visual mode

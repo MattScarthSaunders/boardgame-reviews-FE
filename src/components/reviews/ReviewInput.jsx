@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { postReview } from "./api";
-import { CategoryContext } from "./context/CategoryContext";
-import { ReviewsContext } from "./context/ReviewsContext";
-import { UserContext } from "./context/UserContext";
-import { VisualModeContext } from "./context/VisualModeContext";
-import DeleteItem from "./DeleteItem";
+import { postReview } from "../api";
+import { CategoryContext } from "../context/CategoryContext";
+import { ReviewsContext } from "../context/ReviewsContext";
+import { UserContext } from "../context/UserContext";
+import { VisualModeContext } from "../context/VisualModeContext";
+import DeleteItem from "./DeleteReview";
 
 const ReviewInput = () => {
   //visual mode
@@ -13,7 +13,7 @@ const ReviewInput = () => {
   //component
   const { categories } = useContext(CategoryContext);
   const { setReviews } = useContext(ReviewsContext);
-  const [deleting, setDeleting] = useState("");
+  const [submittedReview, setSubmittedReview] = useState({});
 
   //form
   const { user } = useContext(UserContext);
@@ -22,14 +22,12 @@ const ReviewInput = () => {
   const [categorySelector, setCategorySelector] = useState("strategy");
   const [bodyInput, setBodyInput] = useState("");
 
-  //submit
-  const [reviewSuccess, setReviewSuccess] = useState(false);
-  const [submittedReview, setSubmittedReview] = useState({});
-
   //ux
   const [error, setError] = useState("");
+  const [reviewSuccess, setReviewSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [deleting, setDeleting] = useState("");
 
   const handleInput = (e) => {
     if (e.target.id === "reviewTitleInput") {

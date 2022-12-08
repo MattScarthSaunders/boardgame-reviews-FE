@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { deleteReview } from "./api";
-import { UserContext } from "./context/UserContext";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { deleteReview } from "../api";
+import { ReviewsContext } from "../context/ReviewsContext";
+import { UserContext } from "../context/UserContext";
+import { VisualModeContext } from "../context/VisualModeContext";
 
 const DeleteItem = ({
   review,
-  setReviews,
   setUserReviews,
   setReviewSuccess,
   setDeleting,
@@ -14,6 +14,7 @@ const DeleteItem = ({
   const { mode } = useContext(VisualModeContext);
   //component
   const { user } = useContext(UserContext);
+  const { setReviews } = useContext(ReviewsContext);
   const [tryDelete, setTryDelete] = useState(false);
   const [error, setError] = useState("");
 
@@ -30,7 +31,9 @@ const DeleteItem = ({
         if (setUserReviews) {
           setUserReviews((currReviews) => {
             let newReviews = [...currReviews];
-            const index = newReviews.find((review) => review.review_id === id);
+            const index = newReviews.findIndex(
+              (review) => review.review_id === id
+            );
             newReviews.splice(index, 1);
             return newReviews;
           });
@@ -38,7 +41,9 @@ const DeleteItem = ({
         if (setReviews) {
           setReviews((currReviews) => {
             let newReviews = [...currReviews];
-            const index = newReviews.find((review) => review.review_id === id);
+            const index = newReviews.findIndex(
+              (review) => review.review_id === id
+            );
             newReviews.splice(index, 1);
             return newReviews;
           });
@@ -51,7 +56,6 @@ const DeleteItem = ({
         setError("");
       })
       .catch((err) => {
-        console.log(err);
         if (err) {
           setError("Could not delete, please refresh and try again.");
           setDeleting("");
