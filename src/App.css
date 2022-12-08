@@ -134,6 +134,10 @@ button {
   height: 30px;
 }
 
+#resultLimit {
+  width: 40px;
+  height: 30px;
+}
 .Reviews--Paginator button {
   padding: 3px;
   width: 20px;
