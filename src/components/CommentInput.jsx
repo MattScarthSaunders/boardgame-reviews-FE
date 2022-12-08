@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
 import { postComment } from "./api";
+import { UserContext } from "./context/UserContext";
 import { VisualModeContext } from "./context/VisualModeContext";
 
 const CommentInput = ({ review_id, comments, setComments }) => {
   //visual mode
   const { mode } = useContext(VisualModeContext);
   //component
+
+  const { user } = useContext(UserContext);
 
   const [input, setInput] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
@@ -23,7 +26,7 @@ const CommentInput = ({ review_id, comments, setComments }) => {
       setWarningMessage("Please enter some text!");
       e.target[1].disabled = false;
     } else {
-      postComment(input, review_id)
+      postComment(input, review_id, user.username)
         .then((response) => {
           setComments((currComments) => {
             let commentIDs = currComments.map((comment) => {

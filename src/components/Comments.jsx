@@ -1,6 +1,7 @@
 import { useEffect, useState, Fragment, useContext } from "react";
 import { deleteComment, getCommentsByReview } from "./api";
 import CommentInput from "./CommentInput";
+import { UserContext } from "./context/UserContext";
 import { VisualModeContext } from "./context/VisualModeContext";
 import Votes from "./Votes";
 
@@ -8,6 +9,7 @@ const Comments = ({ review_id }) => {
   //visual mode
   const { mode } = useContext(VisualModeContext);
   //component
+  const { user } = useContext(UserContext);
 
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [comments, setComments] = useState([]);
@@ -96,7 +98,7 @@ const Comments = ({ review_id }) => {
                       comment={comment}
                       voteId={comment.comment_id}
                     />
-                    {comment.author === "visitor" ? (
+                    {comment.author === user.username ? (
                       <button
                         id="deleteButton"
                         onClick={(e) => {

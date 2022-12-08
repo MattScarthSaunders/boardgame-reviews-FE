@@ -65,10 +65,10 @@ export const patchCommentVotesDown = (comment_id, value) => {
   return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -value });
 };
 
-export const postComment = (comment, review_id) => {
+export const postComment = (comment, review_id, currentUser) => {
   return reviewsAPI
     .post(`/reviews/${review_id}/comments`, {
-      username: "visitor",
+      username: currentUser,
       body: comment,
     })
     .then((response) => {
