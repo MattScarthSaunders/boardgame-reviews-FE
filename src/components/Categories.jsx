@@ -1,32 +1,54 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "./api";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const Categories = () => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
   const [isHidden, setIsHidden] = useState("Hide");
   const [categories, setCategories] = useState([]);
 
+  const ref = useRef(null);
   useEffect(() => {
     getCategories().then((response) => {
       setCategories(response);
     });
+    document.addEventListener("click", handleClickOutside, true);
   }, []);
 
   const showCategories = () => {
     isHidden === "Show" ? setIsHidden("Hide") : setIsHidden("Show");
   };
 
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsHidden("Hide");
+    }
+  };
+
   return (
     <>
-      <button className="NavButton" onClick={showCategories}>
+      <button
+        ref={ref}
+        className={`NavButton ${mode}`}
+        onClick={showCategories}
+      >
         Categories
       </button>
-      <section className={`Categories--Container ${isHidden}`}>
+      <section className={`Categories--Container ${isHidden} ${mode}`}>
         <ul className="Categories--List">
           {categories.map(({ slug }) => {
             return (
               <li key={slug}>
-                <Link onClick={showCategories} to={`/${slug}`}>
+                <Link
+                  onClick={() => {
+                    setIsHidden("Hide");
+                  }}
+                  to={`/${slug}`}
+                >
                   {slug}
                 </Link>
               </li>

@@ -1,19 +1,40 @@
+import userEvent from "@testing-library/user-event";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Categories from "./Categories";
+import { UserContext } from "./context/UserContext";
+import { VisualModeContext } from "./context/VisualModeContext";
 
 const Nav = () => {
+  //visual mode
+  const { mode } = useContext(VisualModeContext);
+  //component
+
+  const { user } = useContext(UserContext);
+
   return (
     <nav>
       <ul>
         <li>
-          <button className="NavButton">
-            <Link to="/">Reviews</Link>
-          </button>
+          <Link tabIndex="-1" to="/">
+            <button className={`NavButton ${mode}`}>Home</button>
+          </Link>
         </li>
         <li>
           <Categories />
         </li>
       </ul>
+      <Link to={`/users/${user.username}`}>
+        <section className="Nav--User">
+          <img
+            className="Nav--User--Img"
+            src={user.avatar_url}
+            alt={user.username}
+            aria-label="User profile"
+          ></img>
+          <p>{user.username}</p>
+        </section>
+      </Link>
     </nav>
   );
 };

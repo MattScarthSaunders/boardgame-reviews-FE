@@ -4,13 +4,28 @@ const reviewsAPI = axios.create({
   baseURL: "https://boardgame-reviews.cyclic.app/api",
 });
 
-export const getReviews = (page = 0, limit = 10, category) => {
+export const getReviews = (
+  page = 0,
+  limit = 10,
+  category,
+  { sort_by, order }
+) => {
   let chosenCategory = category;
-  if (category === "All") {
-    chosenCategory = null;
-  }
+  if (category === "All") chosenCategory = null;
+
+  let sort = sort_by;
+  if (!sort_by) sort = null;
+
   return reviewsAPI
-    .get("/reviews", { params: { p: page, limit, category: chosenCategory } })
+    .get("/reviews", {
+      params: {
+        p: page,
+        limit,
+        category: chosenCategory,
+        sort_by: sort,
+        order,
+      },
+    })
     .then((response) => {
       return response.data;
     });
@@ -34,6 +49,12 @@ export const getCategories = () => {
   });
 };
 
+export const getUserByUsername = (username) => {
+  return reviewsAPI.get(`/users/${username}`).then((response) => {
+    return response.data.user;
+  });
+};
+
 export const patchReviewVotesUp = (review_id, value) => {
   return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: value });
 };
@@ -50,13 +71,17 @@ export const patchCommentVotesDown = (comment_id, value) => {
   return reviewsAPI.patch(`/comments/${comment_id}`, { inc_votes: -value });
 };
 
-export const postComment = (comment, review_id) => {
+export const postComment = (comment, review_id, currentUser) => {
   return reviewsAPI
     .post(`/reviews/${review_id}/comments`, {
-      username: "jessjelly",
+      username: currentUser,
       body: comment,
     })
     .then((response) => {
       return response.data.comment;
     });
+};
+
+export const deleteComment = (comment_id) => {
+  return reviewsAPI.delete(`/comments/${comment_id}`);
 };
