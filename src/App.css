@@ -25,6 +25,7 @@ header {
   width: 100vw;
   background: #2c3a3c;
   display: flex;
+  z-index: 2;
 }
 
 h1 {
@@ -256,7 +257,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0 30px;
+  gap: 10px 30px;
   margin: 10px 0px;
   padding: 5px;
   width: 100%;
@@ -304,6 +305,19 @@ button {
   flex-wrap: wrap;
   gap: 10px;
   list-style-type: none;
+}
+
+.Reviews--List--AddReviewButton {
+  cursor: pointer;
+  border: none;
+  background-color: #39706c;
+  color: #b5c8bd;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 10px;
+  margin-bottom: 20px;
+  height: 40px;
+  font-weight: bolder;
 }
 
 .Reviews--List--Card--UserLink {
@@ -813,6 +827,11 @@ main.dark {
 
 .Reviews--List--AddReview.dark {
   background-color: #39706c;
+}
+
+.Reviews--List--AddReviewButton.dark {
+  background-color: #39706c;
+  border: 1px solid #b5c8bd;
 }
 
 .Reviews--List--AddReview--Form.dark button {

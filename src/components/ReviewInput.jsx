@@ -29,6 +29,7 @@ const ReviewInput = () => {
   //ux
   const [error, setError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInput = (e) => {
     if (e.target.id === "reviewTitleInput") {
@@ -63,8 +64,10 @@ const ReviewInput = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setReviewSuccess(false);
+    setIsLoading(false);
     if (inputChecker()) {
       setErrorMessage("");
+      setIsLoading(true);
       postReview(
         user.username,
         titleInput,
@@ -75,6 +78,7 @@ const ReviewInput = () => {
         .then((response) => {
           setSubmittedReview(response);
           setReviewSuccess(true);
+          setIsLoading(false);
         })
         .catch((err) => {
           if (err) {
@@ -86,6 +90,7 @@ const ReviewInput = () => {
               : setError(
                   "Sorry, we couldn't post the review right now. Please try again later"
                 );
+            setIsLoading(false);
           }
         });
     }
@@ -133,6 +138,11 @@ const ReviewInput = () => {
       </form>
       {errorMessage.length > 0 ? (
         <p>{errorMessage}</p>
+      ) : isLoading ? (
+        <>
+          <div className={`loader ${mode}`}></div>
+          <p>loading...</p>
+        </>
       ) : reviewSuccess ? (
         <>
           <section className={`Reviews--List--Card ${deleting} ${mode}`}>

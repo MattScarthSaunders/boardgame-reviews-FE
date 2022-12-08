@@ -101,10 +101,12 @@ const ReviewsList = () => {
               })
             : null}
         </section>
-        <Link tabIndex="-1" to="/reviews/add-review">
-          <button>Add Review</button>
-        </Link>
       </section>
+      <Link tabIndex="-1" to="/reviews/add-review">
+        <button className={`Reviews--List--AddReviewButton ${mode}`}>
+          Share your review!
+        </button>
+      </Link>
       <ul className={`Reviews--List ${mode}`}>
         {reviews.map(
           ({ review_id, title, owner, review_img_url, created_at, votes }) => {

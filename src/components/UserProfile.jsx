@@ -88,6 +88,11 @@ const UserProfile = () => {
       <section className={`UserProfile--UserReviews ${mode}`}>
         {!userReviews.length ? (
           <p>{user.username} has no reviews yet!</p>
+        ) : reviewsLoading ? (
+          <>
+            <div className={`loader ${mode}`}></div>
+            <p>loading...</p>
+          </>
         ) : (
           <>
             <ul className={`UserReviews--List ${mode}`}>
