@@ -82,6 +82,24 @@ export const postComment = (comment, review_id, currentUser) => {
     });
 };
 
+export const postReview = (owner, title, review_body, designer, category) => {
+  return reviewsAPI
+    .post(`/reviews`, {
+      owner,
+      title,
+      review_body,
+      designer,
+      category,
+    })
+    .then((response) => {
+      return response.data.review;
+    });
+};
+
 export const deleteComment = (comment_id) => {
   return reviewsAPI.delete(`/comments/${comment_id}`);
+};
+
+export const deleteReview = (review_id) => {
+  return reviewsAPI.delete(`/reviews/${review_id}`);
 };

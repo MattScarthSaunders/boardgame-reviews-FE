@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews } from "./api";
+import { ReviewsContext } from "./context/ReviewsContext";
 import { VisualModeContext } from "./context/VisualModeContext";
+import DeleteItem from "./DeleteItem";
 import ReviewFilter from "./ReviewFilter";
 
 const ReviewsList = () => {
@@ -9,7 +11,7 @@ const ReviewsList = () => {
   const { mode } = useContext(VisualModeContext);
   //component
 
-  const [reviews, setReviews] = useState([]);
+  const { reviews, setReviews } = useContext(ReviewsContext);
 
   //filtering
   let { category } = useParams();
@@ -98,12 +100,20 @@ const ReviewsList = () => {
               })
             : null}
         </section>
+        <Link tabIndex="-1" to="/reviews/add-review">
+          <button>Add Review</button>
+        </Link>
       </section>
       <ul className={`Reviews--List ${mode}`}>
         {reviews.map(
           ({ review_id, title, owner, review_img_url, created_at, votes }) => {
             return (
               <li key={review_id} className={`Reviews--List--Card ${mode}`}>
+                <DeleteItem
+                  review={{ review_id, owner }}
+                  setReviews={setReviews}
+                />
+
                 <img src={review_img_url} alt={title} />
                 <h3>{title}</h3>
                 <section className={`Reviews--List--Card--Info ${mode}`}>
