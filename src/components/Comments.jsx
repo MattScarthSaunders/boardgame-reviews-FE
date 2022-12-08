@@ -1,4 +1,5 @@
 import { useEffect, useState, Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import { deleteComment, getCommentsByReview } from "./api";
 import CommentInput from "./CommentInput";
 import { UserContext } from "./context/UserContext";
@@ -91,7 +92,11 @@ const Comments = ({ review_id }) => {
               <Fragment key={comment.comment_id}>
                 <li className={`Comment ${deleting} ${mode}`}>
                   <section className={`Comment--Header ${mode}`}>
-                    <h4>{comment.author}</h4>
+                    <Link to={`/users/${comment.author}`}>
+                      <h3 className={`.Reviews--List--Card--UserLink ${mode}`}>
+                        {comment.author}
+                      </h3>
+                    </Link>
                     <p>{comment.created_at.slice(0, 10)}</p>
                     <Votes
                       type="comment"

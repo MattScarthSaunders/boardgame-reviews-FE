@@ -69,17 +69,19 @@ const UserProfile = () => {
   ) : error ? (
     <h3>{error}</h3>
   ) : (
-    <section className="UserProfile">
-      <h2 className={`UserProfile--Username ${mode}`}>{user.username}</h2>
-      <img
-        className={`UserProfile--Avatar ${mode}`}
-        src={user.avatar_url}
-        alt={user.username}
-      />
+    <section className={`UserProfile ${mode}`}>
+      <section className={`UserProfile--About ${mode}`}>
+        <h2 className={`UserProfile--Username ${mode}`}>{user.username}</h2>
+        <img
+          className={`UserProfile--Avatar ${mode}`}
+          src={user.avatar_url}
+          alt={user.username}
+        />
+      </section>
       <h2
         className={`UserReviews--Heading ${mode}`}
       >{`${user.username}'s Reviews:`}</h2>
-      <section className="UserProfile--UserReviews">
+      <section className={`UserProfile--UserReviews ${mode}`}>
         {!userReviews.length ? (
           <p>{user.username} has no reviews yet!</p>
         ) : (

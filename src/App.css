@@ -12,6 +12,12 @@
 #B5C8BD - light grey
 #ECDC75 - yellow */
 
+.App,
+header,
+main {
+  min-width: 450px;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -37,6 +43,7 @@ strong {
 
 a {
   text-decoration: none;
+  color: #91c7a5;
 }
 
 .NavButton {
@@ -102,10 +109,20 @@ main {
   align-items: center;
   gap: 10px;
   padding: 20px;
-  background-color: #b5c8bd;
   margin: 2%;
   border-radius: 5px;
   width: 95%;
+}
+
+.UserProfile--About {
+  background-color: #b5c8bd;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .UserProfile--Avatar {
@@ -154,7 +171,7 @@ main {
 }
 
 .UserReviews--List--Card:hover {
-  background-color: #39706c;
+  background-color: #b5c8bd;
   box-shadow: 0 0 15px 0 black;
 }
 
@@ -577,7 +594,7 @@ button {
   right: 0;
   top: 0;
   margin-right: 14vw;
-  margin-top: 4vh;
+  margin-top: 3vh;
 }
 
 .styleSlider {
@@ -627,6 +644,37 @@ main.dark {
   color: #b5c8bd;
 }
 
+.UserProfile.dark {
+  color: #b5c8bd;
+  background-color: #1a2122;
+}
+
+.UserProfile--About.dark {
+  color: #b5c8bd;
+  background-color: #39706c;
+}
+
+.UserProfile--Avatar.dark {
+  border: 5px solid #b5c8bd;
+}
+
+.UserProfile--Username.dark {
+  color: #b5c8bd;
+}
+
+.UserReviews--Heading.dark {
+  color: #b5c8bd;
+}
+
+.UserReviews--List--Card:hover.dark {
+  color: #b5c8bd;
+  background-color: #2c3a3c;
+}
+
+.UserReviews--List--Card.dark h3 {
+  color: #b5c8bd;
+}
+
 .Reviews--List--Card:hover.dark {
   color: #b5c8bd;
   background-color: #2c3a3c;
@@ -634,6 +682,10 @@ main.dark {
 
 .Reviews--List--Card.dark h3 {
   color: #b5c8bd;
+}
+
+.Reviews--List--Card--UserLink.dark {
+  color: #91c7a5;
 }
 
 .Reviews--Filtering.dark {
@@ -683,15 +735,22 @@ main.dark {
 }
 
 @media only screen and (min-width: 700px) {
+  header {
+    height: 110px;
+  }
+
+  main {
+    margin-top: 110px;
+  }
   h1 {
-    margin-top: 5px;
-    margin-left: 20px;
+    margin: 5px 20px;
     width: 10vw;
     font-size: 2rem;
   }
 
   nav ul {
     gap: 15px;
+    margin-left: 10vw;
   }
 
   .Comment {
@@ -730,16 +789,19 @@ main.dark {
 
   .Categories--Container {
     height: 27vh;
-    width: 20vw;
+    width: 25vw;
     font-size: 1.2rem;
+    margin-left: 0;
   }
 
   .Categories--List {
     gap: 5px;
+    margin: 0;
   }
 
   .Categories--List li:hover {
     text-shadow: 0px 0px 10px #b5c8bd;
+    width: 30vw;
   }
 
   .VisualMode--Container {
@@ -747,5 +809,41 @@ main.dark {
     right: 0;
     top: 0;
     margin-right: 9vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  header {
+    height: 7vh;
+  }
+
+  h1 {
+    margin: 0 0;
+    margin-top: 0.5vh;
+    margin-left: -3.5vw;
+    font-size: 2rem;
+    width: 30vw;
+  }
+
+  main {
+    margin-top: 7vh;
+  }
+
+  nav {
+    margin-top: 1.5vh;
+    margin-left: -12vw;
+  }
+
+  .VisualMode--Container {
+    margin-top: 2vh;
+  }
+
+  .Nav--User {
+    margin-top: 0.5vh;
+    margin-right: 12vw;
+  }
+
+  .Categories--Container {
+    width: 20vw;
   }
 }
