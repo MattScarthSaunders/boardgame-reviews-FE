@@ -250,6 +250,10 @@ main {
   font-weight: bold;
 }
 
+.Categories--List li:hover {
+  text-shadow: 0px 0px 10px #b5c8bd;
+}
+
 /* ------------------------REVIEW LIST------------------------- */
 
 .Reviews--Filtering {
@@ -903,11 +907,6 @@ main.dark {
     margin: 0;
   }
 
-  .Categories--List li:hover {
-    text-shadow: 0px 0px 10px #b5c8bd;
-    width: 30vw;
-  }
-
   .VisualMode--Container {
     position: absolute;
     right: 0;
@@ -951,3 +950,84 @@ main.dark {
     width: 20vw;
   }
 }
+
+/* keeping for later */
+/* 
+.Hide {
+  visibility: hidden;
+  height: 0;
+}
+
+.Show {
+  visibility: visible;
+  height: 10vh;
+  padding: 10px;
+  background-color: #2c3a3c;
+  z-index: 100;
+}
+
+.Categories--Container {
+  background-color: #2c3a3c;
+  height: 27vh;
+  width: 35vw;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.Categories--List {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.Categories--List li:hover {
+  text-shadow: 0px 0px 10px #b5c8bd;
+} 
+
+.NavButton {
+  color: #b5c8bd;
+  border: 1px solid #b5c8bd;
+  padding: 4px;
+  border-radius: 3px;
+  background-color: #2c3a3c;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+nav {
+  margin: 10px 5px;
+  margin-top: 25px;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  height: 2vh;
+  background-color: #2c3a3c;
+  gap: 10px;
+}
+.Nav--User {
+  position: absolute;
+  margin-right: 18vw;
+  margin-top: 2vh;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 60px;
+  color: #b5c8bd;
+}
+
+.Nav--User--Img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  object-position: 50% 0%;
+  border-radius: 100%;
+}*/

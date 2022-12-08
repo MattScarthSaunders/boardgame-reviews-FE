@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { VisualModeContext } from "./components/context/VisualModeContext";
 import Nav from "./components/Nav";
@@ -24,7 +24,9 @@ function App() {
   return (
     <div className={`App ${mode}`}>
       <header>
-        <h1>Boardgame Reviews</h1>
+        <Link to="/">
+          <h1>Boardgame Reviews</h1>
+        </Link>
         {headers}
         <div className="VisualMode--Container">
           <button

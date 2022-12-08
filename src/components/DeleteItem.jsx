@@ -30,7 +30,9 @@ const DeleteItem = ({
         if (setUserReviews) {
           setUserReviews((currReviews) => {
             let newReviews = [...currReviews];
-            const index = newReviews.find((review) => review.review_id === id);
+            const index = newReviews.findIndex(
+              (review) => review.review_id === id
+            );
             newReviews.splice(index, 1);
             return newReviews;
           });
@@ -38,7 +40,9 @@ const DeleteItem = ({
         if (setReviews) {
           setReviews((currReviews) => {
             let newReviews = [...currReviews];
-            const index = newReviews.find((review) => review.review_id === id);
+            const index = newReviews.findIndex(
+              (review) => review.review_id === id
+            );
             newReviews.splice(index, 1);
             return newReviews;
           });
@@ -51,7 +55,6 @@ const DeleteItem = ({
         setError("");
       })
       .catch((err) => {
-        console.log(err);
         if (err) {
           setError("Could not delete, please refresh and try again.");
           setDeleting("");
