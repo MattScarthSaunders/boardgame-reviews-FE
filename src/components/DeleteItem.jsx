@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { deleteReview } from "./api";
+import { ReviewsContext } from "./context/ReviewsContext";
 import { UserContext } from "./context/UserContext";
 import { VisualModeContext } from "./context/VisualModeContext";
 
 const DeleteItem = ({
   review,
-  setReviews,
   setUserReviews,
   setReviewSuccess,
   setDeleting,
@@ -14,6 +14,7 @@ const DeleteItem = ({
   const { mode } = useContext(VisualModeContext);
   //component
   const { user } = useContext(UserContext);
+  const { setReviews } = useContext(ReviewsContext);
   const [tryDelete, setTryDelete] = useState(false);
   const [error, setError] = useState("");
 
