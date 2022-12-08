@@ -107,12 +107,18 @@ const ReviewsList = () => {
                 <img src={review_img_url} alt={title} />
                 <h3>{title}</h3>
                 <section className={`Reviews--List--Card--Info ${mode}`}>
-                  <p>User: {owner}</p>
+                  <Link to={`/users/${owner}`}>
+                    <p className={`Reviews--List--Card--UserLink ${mode}`}>
+                      User: {owner}
+                    </p>
+                  </Link>
                   <p id="VoteCount">{votes >= 0 ? `+${votes}` : `-${votes}`}</p>
                   <p>Posted: {created_at.slice(0, 10)}</p>
                 </section>
                 <Link tabIndex="-1" to={`/reviews/${review_id}`}>
-                  <button>See Review</button>
+                  <button className={`Reviews--List--Card--ReviewLink ${mode}`}>
+                    See Review
+                  </button>
                 </Link>
               </li>
             );

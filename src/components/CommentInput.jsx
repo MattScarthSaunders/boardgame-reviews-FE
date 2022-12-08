@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { postComment } from "./api";
+import { getCommentsByReview, postComment } from "./api";
 import { UserContext } from "./context/UserContext";
 import { VisualModeContext } from "./context/VisualModeContext";
 
-const CommentInput = ({ review_id, comments, setComments }) => {
+const CommentInput = ({ review_id, setComments, setError }) => {
   //visual mode
   const { mode } = useContext(VisualModeContext);
   //component
@@ -28,21 +28,17 @@ const CommentInput = ({ review_id, comments, setComments }) => {
     } else {
       postComment(input, review_id, user.username)
         .then((response) => {
-          setComments((currComments) => {
-            let commentIDs = currComments.map((comment) => {
-              return comment.comment_id;
+          getCommentsByReview(review_id)
+            .then((response) => {
+              setComments(response);
+            })
+            .catch((err) => {
+              if (err) {
+                setError(
+                  "Could not retrieve comments. Please try again later."
+                );
+              }
             });
-
-            let newComment = {
-              comment_id: Math.max(...commentIDs) + 1,
-              body: response.body,
-              votes: 0,
-              author: response.username,
-              review_id: 4,
-              created_at: `${new Date(new Date())}`,
-            };
-            return [newComment, ...currComments];
-          });
 
           setInput("");
           setWarningMessage("");

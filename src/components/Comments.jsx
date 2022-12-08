@@ -79,8 +79,8 @@ const Comments = ({ review_id }) => {
       <h3>Comments</h3>
       <CommentInput
         review_id={review_id}
-        comments={comments}
         setComments={setComments}
+        setError={setError}
       />
       {comments.length < 1 ? (
         <p>There are no comments yet!</p>

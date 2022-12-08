@@ -5,6 +5,7 @@ import { VisualModeContext } from "./components/context/VisualModeContext";
 import Nav from "./components/Nav";
 import Review from "./components/Review";
 import ReviewsList from "./components/ReviewsList";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   //visual mode
@@ -41,9 +42,8 @@ function App() {
         <Routes>
           <Route name="home" path="/" element={<ReviewsList />} />
           <Route path="/:category" element={<ReviewsList />} />
-        </Routes>
-        <Routes>
           <Route path="/reviews/:review_id" element={<Review />} />
+          <Route path="/users/:username" element={<UserProfile />} />
         </Routes>
       </main>
     </div>

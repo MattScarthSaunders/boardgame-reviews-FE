@@ -49,6 +49,12 @@ export const getCategories = () => {
   });
 };
 
+export const getUserByUsername = (username) => {
+  return reviewsAPI.get(`/users/${username}`).then((response) => {
+    return response.data.user;
+  });
+};
+
 export const patchReviewVotesUp = (review_id, value) => {
   return reviewsAPI.patch(`/reviews/${review_id}`, { inc_votes: value });
 };
