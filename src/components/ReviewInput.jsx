@@ -12,7 +12,8 @@ const ReviewInput = () => {
   const { mode } = useContext(VisualModeContext);
   //component
   const { categories } = useContext(CategoryContext);
-  const { reviews, setReviews } = useContext(ReviewsContext);
+  const { setReviews } = useContext(ReviewsContext);
+  const [deleting, setDeleting] = useState("");
 
   //form
   const { user } = useContext(UserContext);
@@ -27,6 +28,7 @@ const ReviewInput = () => {
 
   //ux
   const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInput = (e) => {
     if (e.target.id === "reviewTitleInput") {
@@ -43,32 +45,50 @@ const ReviewInput = () => {
     }
   };
 
+  const inputChecker = () => {
+    if (!titleInput.length) {
+      setErrorMessage("Input a title!");
+      return false;
+    } else if (!designerInput.length) {
+      setErrorMessage("Input a designer!");
+      return false;
+    } else if (!bodyInput.length) {
+      setErrorMessage("Your review cannot be blank!");
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setReviewSuccess(false);
-    postReview(
-      user.username,
-      titleInput,
-      bodyInput,
-      designerInput,
-      categorySelector
-    )
-      .then((response) => {
-        setSubmittedReview(response);
-        setReviewSuccess(true);
-      })
-      .catch((err) => {
-        if (err) {
-          setReviewSuccess(false);
-          err.response.status < 500
-            ? setError(
-                "Post invalid, please check your submission and try again"
-              )
-            : setError(
-                "Sorry, we couldn't post the review right now. Please try again later"
-              );
-        }
-      });
+    if (inputChecker()) {
+      setErrorMessage("");
+      postReview(
+        user.username,
+        titleInput,
+        bodyInput,
+        designerInput,
+        categorySelector
+      )
+        .then((response) => {
+          setSubmittedReview(response);
+          setReviewSuccess(true);
+        })
+        .catch((err) => {
+          if (err) {
+            setReviewSuccess(false);
+            err.response.status < 500
+              ? setError(
+                  "Post invalid, please check your submission and try again"
+                )
+              : setError(
+                  "Sorry, we couldn't post the review right now. Please try again later"
+                );
+          }
+        });
+    }
   };
 
   return (
@@ -90,7 +110,7 @@ const ReviewInput = () => {
           onChange={handleInput}
           value={designerInput}
         ></input>
-        <label htmlFor="reviewCategorySelector">Category</label>
+        <label htmlFor="reviewCategorySelector">Category:</label>
         <select
           id="reviewCategorySelector"
           onChange={handleInput}
@@ -108,15 +128,17 @@ const ReviewInput = () => {
         ></textarea>
         <button type="submit">Submit</button>
       </form>
-      {reviewSuccess ? (
+      {errorMessage.length > 0 ? (
+        <p>{errorMessage}</p>
+      ) : reviewSuccess ? (
         <>
-          <section className={`Reviews--List--Card ${mode}`}>
+          <section className={`Reviews--List--Card ${deleting} ${mode}`}>
             <DeleteItem
               review={submittedReview}
               setReviews={setReviews}
               setReviewSuccess={setReviewSuccess}
+              setDeleting={setDeleting}
             />
-            <img src={submittedReview.avatar_url} alt={submittedReview.title} />
             <h3>{submittedReview.title}</h3>
             <section className={`Reviews--List--Card--Info ${mode}`}>
               <Link to={`/users/${submittedReview.owner}`}>

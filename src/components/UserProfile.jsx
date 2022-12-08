@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReviews, getUserByUsername } from "./api";
+import { ReviewsContext } from "./context/ReviewsContext";
 import { VisualModeContext } from "./context/VisualModeContext";
+import DeleteItem from "./DeleteItem";
 
 const UserProfile = () => {
   //visual mode
   const { mode } = useContext(VisualModeContext);
   //component
+  const { setReviews } = useContext(ReviewsContext);
   const { username } = useParams();
   const [user, setUser] = useState({});
   const [userReviews, setUserReviews] = useState([]);
@@ -14,6 +17,7 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(false);
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [deleting, setDeleting] = useState("");
 
   useEffect(() => {
     setError("");
@@ -99,8 +103,14 @@ const UserProfile = () => {
                   return (
                     <li
                       key={review_id}
-                      className={`UserReviews--List--Card ${mode}`}
+                      className={`UserReviews--List--Card ${deleting} ${mode}`}
                     >
+                      <DeleteItem
+                        review={{ review_id, owner }}
+                        setReviews={setReviews}
+                        setDeleting={setDeleting}
+                        setUserReviews={setUserReviews}
+                      />
                       <img src={review_img_url} alt={title} />
                       <h3>{title}</h3>
                       <section

@@ -12,6 +12,7 @@ const ReviewsList = () => {
   //component
 
   const { reviews, setReviews } = useContext(ReviewsContext);
+  const [deleting, setDeleting] = useState("");
 
   //filtering
   let { category } = useParams();
@@ -55,7 +56,7 @@ const ReviewsList = () => {
             : setError("Could not retrieve reviews. Please try again later");
         }
       });
-  }, [resultLimit, page, category, sortValues]);
+  }, [resultLimit, page, category, sortValues, deleting]);
 
   return isLoading ? (
     <>
@@ -108,10 +109,14 @@ const ReviewsList = () => {
         {reviews.map(
           ({ review_id, title, owner, review_img_url, created_at, votes }) => {
             return (
-              <li key={review_id} className={`Reviews--List--Card ${mode}`}>
+              <li
+                key={review_id}
+                className={`Reviews--List--Card ${deleting} ${mode}`}
+              >
                 <DeleteItem
                   review={{ review_id, owner }}
                   setReviews={setReviews}
+                  setDeleting={setDeleting}
                 />
 
                 <img src={review_img_url} alt={title} />

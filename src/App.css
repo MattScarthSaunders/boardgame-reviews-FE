@@ -161,6 +161,7 @@ main {
 }
 
 .UserReviews--List--Card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -367,6 +368,40 @@ button {
   border: 1px solid #2c3a3c;
 }
 
+.Reviews--List--AddReview {
+  background: #b5c8bd;
+  width: 97vw;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Reviews--List--AddReview button {
+  color: #b5c8bd;
+  border: none;
+  background-color: #39706c;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.Reviews--List--AddReview--Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.Reviews--List--AddReview .Reviews--List--card img {
+  height: 0;
+}
+
 /* ---------------------------REVIEW--------------------------- */
 .Review {
   display: flex;
@@ -522,6 +557,8 @@ button {
   cursor: pointer;
   font-weight: bolder;
   right: 0;
+  color: black;
+  text-shadow: 0px 0px 1px black;
 }
 
 #failedDelete {
@@ -733,6 +770,10 @@ main.dark {
 
 .Vote--Button.dark.downVote {
   color: rgb(184, 43, 43);
+}
+
+.Reviews--List--AddReview.dark {
+  background-color: #39706c;
 }
 
 @media only screen and (min-width: 700px) {
