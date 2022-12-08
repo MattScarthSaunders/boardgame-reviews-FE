@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteComment } from "../api";
 import { UserContext } from "../context/UserContext";
@@ -48,7 +48,7 @@ const Comment = ({ comment, index, setComments }) => {
   };
 
   return (
-    <Fragment key={comment_id}>
+    <>
       <li className={`Comment ${deleting} ${mode}`}>
         <section className={`Comment--Header ${mode}`}>
           <Link to={`/users/${author}`}>
@@ -87,7 +87,7 @@ const Comment = ({ comment, index, setComments }) => {
       {failedDelete && commentToDelete[0] === comment_id ? (
         <p id="failedDelete">{failedDelete}</p>
       ) : null}
-    </Fragment>
+    </>
   );
 };
 

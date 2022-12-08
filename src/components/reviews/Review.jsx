@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getReview } from "../api";
 import Comments from "../comments/Comments";
 import { VisualModeContext } from "../context/VisualModeContext";
@@ -58,9 +58,9 @@ const Review = () => {
         <section className={`Review--Body ${mode}`}>
           <h3>Review:</h3>
           <p>{review.review_body}</p>
-          <p>
+          <p className={`Review--UserLink ${mode}`}>
             <strong className={`Review--strong ${mode}`}>Review by:</strong>{" "}
-            {review.owner}
+            <Link to={`/users/${review.owner}`}>{review.owner}</Link>
           </p>
           <p>
             <strong className={`Review--strong ${mode}`}>Reviewed on:</strong>{" "}

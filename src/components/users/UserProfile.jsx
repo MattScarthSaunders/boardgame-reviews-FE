@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { VisualModeContext } from "./context/VisualModeContext";
-import { useUsername } from "./hooks/useUsername";
+import { VisualModeContext } from "../context/VisualModeContext";
+import { useUsername } from "../hooks/useUsername";
 import UserReview from "./UserReview";
 
 const UserProfile = () => {
@@ -49,7 +49,11 @@ const UserProfile = () => {
             <ul className={`UserReviews--List ${mode}`}>
               {userReviews.map((review) => {
                 return (
-                  <UserReview review={review} setUserReviews={setUserReviews} />
+                  <UserReview
+                    key={review.review_id}
+                    review={review}
+                    setUserReviews={setUserReviews}
+                  />
                 );
               })}
             </ul>

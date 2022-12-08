@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Review from "./components/reviews/Review";
 import ReviewInput from "./components/reviews/ReviewInput";
 import ReviewsList from "./components/reviews/ReviewsList";
-import UserProfile from "./components/UserProfile";
+import UserProfile from "./components/users/UserProfile";
 
 function App() {
   //visual mode

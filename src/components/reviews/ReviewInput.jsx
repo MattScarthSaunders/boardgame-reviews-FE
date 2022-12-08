@@ -5,7 +5,7 @@ import { CategoryContext } from "../context/CategoryContext";
 import { ReviewsContext } from "../context/ReviewsContext";
 import { UserContext } from "../context/UserContext";
 import { VisualModeContext } from "../context/VisualModeContext";
-import DeleteItem from "../DeleteItem";
+import DeleteItem from "./DeleteReview";
 
 const ReviewInput = () => {
   //visual mode

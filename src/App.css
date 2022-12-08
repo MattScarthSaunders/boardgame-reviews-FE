@@ -501,6 +501,9 @@ button {
   margin: 5px 0;
 }
 
+.Review--UserLink a {
+  color: #2c3a3c;
+}
 /* ---------------------------COMMENTS--------------------------- */
 
 .Comments {
@@ -801,6 +804,10 @@ main.dark {
 }
 
 .Review--strong.dark {
+  color: #91c7a5;
+}
+
+.Review--UserLink.dark a {
   color: #91c7a5;
 }
 

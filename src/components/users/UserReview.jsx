@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { VisualModeContext } from "./context/VisualModeContext";
-import DeleteItem from "./DeleteItem";
+import { VisualModeContext } from "../context/VisualModeContext";
+import DeleteItem from "../reviews/DeleteReview";
 
 const UserReview = ({ review, setUserReviews }) => {
   const { review_id, owner, review_img_url, title, votes, created_at } = review;
@@ -11,10 +11,7 @@ const UserReview = ({ review, setUserReviews }) => {
 
   const [deleting, setDeleting] = useState("");
   return (
-    <li
-      key={review_id}
-      className={`UserReviews--List--Card ${deleting} ${mode}`}
-    >
+    <li className={`UserReviews--List--Card ${deleting} ${mode}`}>
       <DeleteItem
         review={{ review_id, owner }}
         setDeleting={setDeleting}

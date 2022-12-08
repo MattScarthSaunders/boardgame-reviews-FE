@@ -55,6 +55,7 @@ const Comments = ({ review_id }) => {
           {comments.map((comment, index) => {
             return (
               <Comment
+                key={comment.comment_id}
                 comment={comment}
                 index={index}
                 setComments={setComments}
