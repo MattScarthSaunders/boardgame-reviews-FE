@@ -4,6 +4,7 @@ import "./App.css";
 import { VisualModeContext } from "./components/context/VisualModeContext";
 import Nav from "./components/Nav";
 import Review from "./components/Review";
+import ReviewInput from "./components/ReviewInput";
 import ReviewsList from "./components/ReviewsList";
 import UserProfile from "./components/UserProfile";
 
@@ -42,6 +43,7 @@ function App() {
         <Routes>
           <Route name="home" path="/" element={<ReviewsList />} />
           <Route path="/:category" element={<ReviewsList />} />
+          <Route path="/reviews/add-review" element={<ReviewInput />} />
           <Route path="/reviews/:review_id" element={<Review />} />
           <Route path="/users/:username" element={<UserProfile />} />
         </Routes>

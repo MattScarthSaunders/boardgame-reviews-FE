@@ -25,6 +25,7 @@ header {
   width: 100vw;
   background: #2c3a3c;
   display: flex;
+  z-index: 2;
 }
 
 h1 {
@@ -161,6 +162,7 @@ main {
 }
 
 .UserReviews--List--Card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -255,7 +257,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0 30px;
+  gap: 10px 30px;
   margin: 10px 0px;
   padding: 5px;
   width: 100%;
@@ -305,11 +307,25 @@ button {
   list-style-type: none;
 }
 
+.Reviews--List--AddReviewButton {
+  cursor: pointer;
+  border: none;
+  background-color: #39706c;
+  color: #b5c8bd;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 10px;
+  margin-bottom: 20px;
+  height: 40px;
+  font-weight: bolder;
+}
+
 .Reviews--List--Card--UserLink {
   color: #2c3a3c;
 }
 
 .Reviews--List--Card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -364,6 +380,79 @@ button {
   color: #2c3a3c;
   background-color: #b5c8bd;
   border: 1px solid #2c3a3c;
+}
+
+.Reviews--List--AddReview {
+  background: #b5c8bd;
+  width: 97vw;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Reviews--List--AddReview button {
+  color: #b5c8bd;
+  border: none;
+  background-color: #39706c;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.Reviews--List--AddReview--Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.Reviews--List--AddReview .Reviews--List--card img {
+  height: 0;
+}
+
+.Reviews--List--Card--Info {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#reviewPreview {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Review--Delete {
+  position: absolute;
+  background-color: #39706c;
+  color: #b5c8bd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 5px;
+  border: 3px solid #b5c8bd;
+  border-radius: 5px;
+  width: 100%;
+  z-index: 1;
+}
+
+.Review--Delete button {
+  grid-row: 2;
+  height: 30px;
+  padding: 3px 10px;
+  border: 1px solid #b5c8bd;
+  border-radius: 5px;
 }
 
 /* ---------------------------REVIEW--------------------------- */
@@ -521,6 +610,8 @@ button {
   cursor: pointer;
   font-weight: bolder;
   right: 0;
+  color: black;
+  text-shadow: 0px 0px 1px black;
 }
 
 #failedDelete {
@@ -732,6 +823,19 @@ main.dark {
 
 .Vote--Button.dark.downVote {
   color: rgb(184, 43, 43);
+}
+
+.Reviews--List--AddReview.dark {
+  background-color: #39706c;
+}
+
+.Reviews--List--AddReviewButton.dark {
+  background-color: #39706c;
+  border: 1px solid #b5c8bd;
+}
+
+.Reviews--List--AddReview--Form.dark button {
+  border: 1px solid #b5c8bd;
 }
 
 @media only screen and (min-width: 700px) {

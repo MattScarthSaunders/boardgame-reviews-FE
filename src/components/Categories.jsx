@@ -1,15 +1,16 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "./api";
+import { CategoryContext } from "./context/CategoryContext";
 import { VisualModeContext } from "./context/VisualModeContext";
 
 const Categories = () => {
   //visual mode
   const { mode } = useContext(VisualModeContext);
   //component
+  const { categories, setCategories } = useContext(CategoryContext);
 
   const [isHidden, setIsHidden] = useState("Hide");
-  const [categories, setCategories] = useState([]);
 
   const ref = useRef(null);
   useEffect(() => {
