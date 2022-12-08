@@ -119,6 +119,7 @@ const Votes = ({ type, review, comment, voteId }) => {
         onClick={(e) => {
           handleUpVote(type, voteId, e);
         }}
+        aria-label="up-vote"
       >
         ▲
       </button>
@@ -129,6 +130,7 @@ const Votes = ({ type, review, comment, voteId }) => {
         onClick={(e) => {
           handleDownVote(type, voteId, e);
         }}
+        aria-label="down-vote"
       >
         ▼
       </button>

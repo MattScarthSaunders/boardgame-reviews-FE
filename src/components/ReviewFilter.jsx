@@ -53,14 +53,12 @@ const ReviewFilter = ({ setSortValues, sortValues }) => {
             return <option key={`${option}${index}`}>{option}</option>;
           })}
         </select>
-        <label htmlFor={`sortOrderButton ${mode}`} hidden>
-          sort order
-        </label>
         <button
           id="sortOrderButton"
           type="button"
           onClick={handleOrder}
           value={orderValue}
+          aria-label="sort order"
         >
           {orderValue}
         </button>

@@ -12,9 +12,9 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <button tabIndex="-1" className={`NavButton ${mode}`}>
-            <Link to="/">Home</Link>
-          </button>
+          <Link tabIndex="-1" to="/">
+            <button className={`NavButton ${mode}`}>Home</button>
+          </Link>
         </li>
         <li>
           <Categories />

@@ -96,15 +96,14 @@ const Comments = ({ review_id }) => {
                       comment={comment}
                       voteId={comment.comment_id}
                     />
-                    <label htmlFor="deleteButton" hidden>
-                      delete comment
-                    </label>
+
                     <button
                       id="deleteButton"
                       onClick={(e) => {
                         handleDelete(e, comment.comment_id, index);
                       }}
                       value="deleteComment"
+                      aria-label="delete comment"
                     >
                       X
                     </button>
