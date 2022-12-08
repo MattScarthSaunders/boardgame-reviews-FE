@@ -45,7 +45,7 @@ const Review = () => {
         <img
           className={`Review--Img ${mode}`}
           src={review.review_img_url}
-          alt="review.title"
+          alt={review.title}
         />
         <section className={`Review--About ${mode}`}>
           <h2>{review.title}</h2>

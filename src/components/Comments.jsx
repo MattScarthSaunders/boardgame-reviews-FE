@@ -96,7 +96,6 @@ const Comments = ({ review_id }) => {
                       comment={comment}
                       voteId={comment.comment_id}
                     />
-
                     <button
                       id="deleteButton"
                       onClick={(e) => {
