@@ -544,6 +544,16 @@ main.dark {
 }
 
 @media only screen and (min-width: 700px) {
+  h1 {
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 2rem;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
   .Comment {
     width: 60vw;
   }
