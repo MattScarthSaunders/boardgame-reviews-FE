@@ -100,15 +100,7 @@ const ReviewsList = () => {
       </section>
       <ul className={`Reviews--List ${mode}`}>
         {reviews.map(
-          ({
-            review_id,
-            title,
-            owner,
-            review_img_url,
-            created_at,
-            votes,
-            comment_count,
-          }) => {
+          ({ review_id, title, owner, review_img_url, created_at, votes }) => {
             return (
               <li key={review_id} className={`Reviews--List--Card ${mode}`}>
                 <img src={review_img_url} alt={title} />
@@ -118,7 +110,7 @@ const ReviewsList = () => {
                   <p id="VoteCount">{votes >= 0 ? `+${votes}` : `-${votes}`}</p>
                   <p>Posted: {created_at.slice(0, 10)}</p>
                 </section>
-                <Link to={`/reviews/${review_id}`}>
+                <Link tabIndex="-1" to={`/reviews/${review_id}`}>
                   <button>See Review</button>
                 </Link>
               </li>
