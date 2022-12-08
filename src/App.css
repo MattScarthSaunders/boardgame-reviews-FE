@@ -15,14 +15,16 @@
 header {
   position: fixed;
   top: 0;
-  height: 115px;
+  height: 60px;
   width: 100vw;
   background: #2c3a3c;
+  display: flex;
 }
 
 h1 {
   color: #b5c8bd;
-  margin: 8px;
+  margin: 8px 5px;
+  font-size: 1.5rem;
 }
 
 h3,
@@ -48,7 +50,7 @@ a {
 
 nav {
   margin: 10px;
-  position: fixed;
+  /* position: fixed; */
 }
 
 nav ul {
@@ -60,7 +62,7 @@ nav ul {
 }
 
 main {
-  margin-top: 115px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -449,7 +451,7 @@ button {
   background-color: #39706c;
   border: 1px solid #b5c8bd;
   border-radius: 20px;
-  z-index: -1;
+  z-index: 0;
 }
 
 .VisualMode--Switch {
@@ -462,6 +464,7 @@ button {
   background-color: #b5c8bd;
   color: #1a2122;
   transition: transform 0.5s, background-color 0.5s;
+  z-index: 1;
 }
 
 .VisualMode--Switch.dark {
@@ -582,8 +585,6 @@ main.dark {
   }
 
   .Categories--List li:hover {
-    /* padding: 3px 0; */
-    /* font-weight: bolder; */
     text-shadow: 0px 0px 10px #b5c8bd;
   }
 
