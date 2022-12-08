@@ -13,6 +13,7 @@ const ReviewInput = () => {
   //component
   const { categories } = useContext(CategoryContext);
   const { setReviews } = useContext(ReviewsContext);
+  const [submittedReview, setSubmittedReview] = useState({});
 
   //form
   const { user } = useContext(UserContext);
@@ -21,12 +22,9 @@ const ReviewInput = () => {
   const [categorySelector, setCategorySelector] = useState("strategy");
   const [bodyInput, setBodyInput] = useState("");
 
-  //submit
-  const [reviewSuccess, setReviewSuccess] = useState(false);
-  const [submittedReview, setSubmittedReview] = useState({});
-
   //ux
   const [error, setError] = useState("");
+  const [reviewSuccess, setReviewSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [deleting, setDeleting] = useState("");
