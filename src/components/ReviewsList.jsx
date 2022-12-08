@@ -12,7 +12,7 @@ const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
 
   //filtering
-  const { category } = useParams();
+  let { category } = useParams();
   const [sortValues, setSortValues] = useState({
     sort_by: "created_at",
     order: "desc",
@@ -29,6 +29,7 @@ const ReviewsList = () => {
   //functions
   useEffect(() => {
     setIsLoading(true);
+    setError("");
     getReviews(page, resultLimit, category, sortValues)
       .then((response) => {
         setReviews(response.reviews);
@@ -46,10 +47,10 @@ const ReviewsList = () => {
       })
       .catch((err) => {
         if (err) {
-          if (err) {
-            setIsLoading(false);
-            setError("This review does not exist!");
-          }
+          setIsLoading(false);
+          err.response.status < 500
+            ? setError("These reviews do not exist!")
+            : setError("Could not retrieve reviews. Please try again later");
         }
       });
   }, [resultLimit, page, category, sortValues]);
@@ -60,7 +61,7 @@ const ReviewsList = () => {
       <p>loading...</p>
     </>
   ) : error ? (
-    <h2>These reviews do not exist!</h2>
+    <h2>{error}</h2>
   ) : (
     <>
       <section className={`Reviews--Filtering ${mode}`}>

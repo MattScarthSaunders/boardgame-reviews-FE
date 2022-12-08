@@ -30,7 +30,6 @@ const CommentInput = ({ review_id, comments, setComments }) => {
               return comment.comment_id;
             });
 
-            console.log(commentIDs);
             let newComment = {
               comment_id: Math.max(...commentIDs) + 1,
               body: response.body,

@@ -18,6 +18,7 @@ const Review = () => {
   useEffect(() => {
     if (!review.length) {
       setReviewLoading(true);
+      setError("");
       getReview(review_id)
         .then((response) => {
           setReview(response);
@@ -26,7 +27,9 @@ const Review = () => {
         .catch((err) => {
           if (err) {
             setReviewLoading(false);
-            setError("This review does not exist!");
+            err < 500
+              ? setError("This review does not exist!")
+              : setError("Could not retrieve review, please try again later");
           }
         });
     }

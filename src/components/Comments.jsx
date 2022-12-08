@@ -96,16 +96,18 @@ const Comments = ({ review_id }) => {
                       comment={comment}
                       voteId={comment.comment_id}
                     />
-                    <button
-                      id="deleteButton"
-                      onClick={(e) => {
-                        handleDelete(e, comment.comment_id, index);
-                      }}
-                      value="deleteComment"
-                      aria-label="delete comment"
-                    >
-                      X
-                    </button>
+                    {comment.author === "visitor" ? (
+                      <button
+                        id="deleteButton"
+                        onClick={(e) => {
+                          handleDelete(e, comment.comment_id, index);
+                        }}
+                        value="deleteComment"
+                        aria-label="delete comment"
+                      >
+                        X
+                      </button>
+                    ) : null}
                   </section>
                   <p className={`Comment--Body ${mode}`}>{comment.body}</p>
                 </li>

@@ -39,7 +39,7 @@ function App() {
       </header>
       <main className={`${mode}`}>
         <Routes>
-          <Route path="/" element={<ReviewsList />} />
+          <Route name="home" path="/" element={<ReviewsList />} />
           <Route path="/:category" element={<ReviewsList />} />
         </Routes>
         <Routes>
