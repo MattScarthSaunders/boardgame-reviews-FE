@@ -67,15 +67,15 @@ const DeleteItem = ({
           onClick={() => {
             checkDelete();
           }}
-          value="deleteComment"
-          aria-label="delete comment"
+          value="deleteReview"
+          aria-label="delete review"
         >
           X
         </button>
       ) : null}
       {tryDelete ? (
-        <section className={`Comment--Delete ${mode}`}>
-          <p tabIndex="0">Delete Comment - are you sure?</p>
+        <section className={`Review--Delete ${mode}`}>
+          <p tabIndex="0">Delete Review - are you sure?</p>
           <button
             onClick={() => {
               handleDelete(review.review_id);

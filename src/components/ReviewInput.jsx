@@ -103,12 +103,14 @@ const ReviewInput = () => {
           id="reviewTitleInput"
           onChange={handleInput}
           value={titleInput}
+          placeholder="Give it a title"
         ></input>
         <label htmlFor="reviewDesignerInput">Game Designer:</label>
         <input
           id="reviewDesignerInput"
           onChange={handleInput}
           value={designerInput}
+          placeholder="Name the designer"
         ></input>
         <label htmlFor="reviewCategorySelector">Category:</label>
         <select
@@ -125,6 +127,7 @@ const ReviewInput = () => {
           id="reviewBody"
           onChange={handleInput}
           value={bodyInput}
+          placeholder="What do you have to say...?"
         ></textarea>
         <button type="submit">Submit</button>
       </form>
@@ -146,12 +149,10 @@ const ReviewInput = () => {
                   User: {submittedReview.owner}
                 </p>
               </Link>
-              <p id="VoteCount">
-                {submittedReview.votes >= 0
-                  ? `+${submittedReview.votes}`
-                  : `-${submittedReview.votes}`}
+              <p>Category: {submittedReview.category}</p>
+              <p id="reviewPreview">
+                Content preview: {submittedReview.review_body}
               </p>
-              <p>Posted: {submittedReview.created_at.slice(0, 10)}</p>
             </section>
             <Link tabIndex="-1" to={`/reviews/${submittedReview.review_id}`}>
               <button className={`Reviews--List--Card--ReviewLink ${mode}`}>

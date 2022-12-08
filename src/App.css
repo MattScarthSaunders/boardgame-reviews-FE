@@ -396,10 +396,49 @@ button {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  margin-bottom: 20px;
 }
 
 .Reviews--List--AddReview .Reviews--List--card img {
   height: 0;
+}
+
+.Reviews--List--Card--Info {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#reviewPreview {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Review--Delete {
+  position: absolute;
+  background-color: #39706c;
+  color: #b5c8bd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 5px;
+  border: 3px solid #b5c8bd;
+  border-radius: 5px;
+  width: 100%;
+  z-index: 1;
+}
+
+.Review--Delete button {
+  grid-row: 2;
+  height: 30px;
+  padding: 3px 10px;
+  border: 1px solid #b5c8bd;
+  border-radius: 5px;
 }
 
 /* ---------------------------REVIEW--------------------------- */
@@ -774,6 +813,10 @@ main.dark {
 
 .Reviews--List--AddReview.dark {
   background-color: #39706c;
+}
+
+.Reviews--List--AddReview--Form.dark button {
+  border: 1px solid #b5c8bd;
 }
 
 @media only screen and (min-width: 700px) {

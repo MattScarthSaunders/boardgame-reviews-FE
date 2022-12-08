@@ -56,7 +56,7 @@ const ReviewsList = () => {
             : setError("Could not retrieve reviews. Please try again later");
         }
       });
-  }, [resultLimit, page, category, sortValues, deleting]);
+  }, [resultLimit, page, category, sortValues]);
 
   return isLoading ? (
     <>
