@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getReview } from "./api";
-import Comments from "./Comments";
-import { VisualModeContext } from "./context/VisualModeContext";
-import Votes from "./Votes";
+import { getReview } from "../api";
+import Comments from "../comments/Comments";
+import { VisualModeContext } from "../context/VisualModeContext";
+import Votes from "../Votes";
 
 const Review = () => {
   //visual mode

@@ -3,9 +3,9 @@ import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { VisualModeContext } from "./components/context/VisualModeContext";
 import Nav from "./components/Nav";
-import Review from "./components/Review";
-import ReviewInput from "./components/ReviewInput";
-import ReviewsList from "./components/ReviewsList";
+import Review from "./components/reviews/Review";
+import ReviewInput from "./components/reviews/ReviewInput";
+import ReviewsList from "./components/reviews/ReviewsList";
 import UserProfile from "./components/UserProfile";
 
 function App() {

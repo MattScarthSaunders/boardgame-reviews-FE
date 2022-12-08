@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { VisualModeContext } from "./context/VisualModeContext";
 import { useUsername } from "./hooks/useUsername";

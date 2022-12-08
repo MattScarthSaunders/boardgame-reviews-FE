@@ -1,9 +1,9 @@
 import { Fragment, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteComment } from "./api";
-import { UserContext } from "./context/UserContext";
-import { VisualModeContext } from "./context/VisualModeContext";
-import Votes from "./Votes";
+import { deleteComment } from "../api";
+import { UserContext } from "../context/UserContext";
+import { VisualModeContext } from "../context/VisualModeContext";
+import Votes from "../Votes";
 
 const Comment = ({ comment, index, setComments }) => {
   const { comment_id, author, created_at, body } = comment;

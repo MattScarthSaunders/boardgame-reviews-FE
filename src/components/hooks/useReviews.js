@@ -4,18 +4,11 @@ import { ReviewsContext } from "../context/ReviewsContext";
 
 export const useReviews = (resultLimit, page, category, sortValues) => {
   const { reviews, setReviews } = useContext(ReviewsContext);
-  //   const [deleting, setDeleting] = useState("");
 
   //filtering
-  //   let { category } = useParams();
-  //   const [sortValues, setSortValues] = useState({
-  //     sort_by: "created_at",
-  //     order: "desc",
-  //   });
+
   const [reviewCount, setReviewCount] = useState(0);
-  //   const [resultLimit, setResultLimit] = useState(10);
   const [pages, setPages] = useState([]);
-  //   const [page, setPage] = useState(0);
 
   //ux
   const [isLoading, setIsLoading] = useState(true);

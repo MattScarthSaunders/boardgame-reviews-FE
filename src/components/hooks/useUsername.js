@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import { getReviews, getUserByUsername } from "../api";
 
 export const useUsername = (username) => {
-  // const { setReviews } = useContext(ReviewsContext);
-  // const { username } = useParams();
   const [user, setUser] = useState({});
   const [userReviews, setUserReviews] = useState([]);
   //ux
   const [loading, setLoading] = useState(false);
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [error, setError] = useState("");
-  // const [deleting, setDeleting] = useState("");
 
   useEffect(() => {
     setError("");
