@@ -87,7 +87,6 @@ const ReviewsList = () => {
               >
                 <DeleteItem
                   review={{ review_id, owner }}
-                  // setReviews={setReviews}
                   setDeleting={setDeleting}
                 />
 
