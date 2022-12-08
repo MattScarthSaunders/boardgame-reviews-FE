@@ -102,13 +102,13 @@ const Votes = ({ type, review, comment, voteId }) => {
     <section className={`Votes ${mode}`}>
       {type === "review" ? (
         <label>
-          <strong>Votes: </strong>
+          <strong className={`Review--strong ${mode}`}>Votes: </strong>
           {review.votes + reviewIncrement}
         </label>
       ) : null}
       {type === "comment" ? (
         <p>
-          <strong>Votes: </strong>
+          <strong className={`Review--strong ${mode}`}>Votes: </strong>
           {comment.votes + commentIncrement}
         </p>
       ) : null}
