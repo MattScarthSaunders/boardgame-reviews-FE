@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Boardgame Reviews - React FrontEnd project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed site link: https://bg-reviews.netlify.app/
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+This app is a project created to provide a front end for my northcoders back end project found here: https://github.com/MattScarthSaunders/boardgame-reviews.
 
-### `npm start`
+The app seeks to provide users the ability to leave reviews for boardgames they have played and interact with other users by commenting and voting on their reviews.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Run locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Requires node v19.0.0 to run locally.
 
-### `npm test`
+Choose a directory, then run:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    git clone https://github.com/MattScarthSaunders/boardgame-reviews-FE
 
-### `npm run build`
+Then navigate into the new repo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    cd boardgame-reviews-FE
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies (may take a moment):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    npm install
 
-### `npm run eject`
+Run locally:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to use
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### General Navigation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You can navigate the site using the home and categories selectors at the top of the screen, and see the visitor profile page by clicking on their profile selector. You can also get back to the home page by clicking on the 'Boardgame Reviews' title. There is a darkmode selector which works site-wide in the top-right, which toggles between two modes. On the pages, the buttons are descriptive so that it's straightforward to navigate. The site is responsive, so is usable on both mobile and desktop and has slightly different layouts depending on which you are using.
 
-## Learn More
+### Review List
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The home page is a general list of all boardgame reviews currently present in the backend database, which can be filtered by various categores and sorted ascending/descending. It is also paginated, so you can select the number of reviews seen on the page and navigate between the pages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This list is populated by review 'cards' which have some basic information about the poster and the review. You can see more information about the posting user by clicking on their name, which will take you to their profile page, or navigate to the review by clicking on the 'see review' button.
 
-### Code Splitting
+You can further filter this set of reviews by using the categories dropdown menu in the header of the app, which will redirect to a new shareable url with the name of the category. This new page will only present reviews of that category, which you can sort and order as before. To get back to the full list, use the home button.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Individual Review
 
-### Analyzing the Bundle Size
+To see an individual review, click on the 'see review' button on a review card on the main list. This will redirect you to a review page. Here you can see various information about the boardgame and the username of the reviewer (which is also a link to their profile).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You can vote up or down on the review, which uses 'reddit-style' voting: you can vote up or down, you can deselect your vote by reclicking it, or you can switch your vote by clicking on the other vote button.
 
-### Making a Progressive Web App
+You can leave comments on the review and see other user comments. These comments can be voted on in the same way as the review, and you can click on the username of the commenter. As a visitor, you can delete visitor-user comments as it is a shared public profile.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Adding a review
 
-### Advanced Configuration
+From the main page, you can click 'share your review' to be redirected to a submission form. Fill this out to add a review to the site! Once it has successfully submitted, you will be shown a preview of the review. These reviews will then be visible on the main page, and on the visitor profile page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+You can delete these reviews in the same way as the comments if you change your mind. The form does not reset so if you aren't happy with your review, you can delete it and make a new one.
 
-### Deployment
+### Visitor profile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The profile pages for the users display their username, avatar and any reviews they have left in the same manner that they're displayed on the same page. You can navigate to those reviews from their profile page, too.
 
-### `npm run build` fails to minify
+## Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The current endpoints on the site are:
+
+Home/reviews
+
+    '/'
+
+Categories (parametric)
+
+    '/:category'
+
+Individual reviews (parametric)
+
+    '/reviews/:review_id
+
+Add a review
+
+    '/reviews/add-review'
+
+User profile (parametric)
+
+    '/users/:username
+
+## Error handling
+
+There is currently error handling for both 500 server errors (i.e the server has an issue) and 400 errors (where the database cannot find what you're trying to get, for example a non-existent category). There is also form validation so that you can't submit an empty comment or review.
+
+## Future functionality
+
+In future I intend to add a basic user login so that visitors can log in as themselves, although this would not include authentication or passwords as I will not be maintaining security for the site - only reseeding the database or deleting individual items if any malicious comments/reviews occur.
+
+I would also like to add an edit feature so that users can edit their own reviews/comments after they are posted and not have to delete/repost to fix their mistakes.
