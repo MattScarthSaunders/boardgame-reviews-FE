@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getReviews } from "../api";
-import { ReviewsContext } from "../context/ReviewsContext";
+import { ReviewsContext } from "../_context/ReviewsContext";
 
 export const useReviews = (resultLimit, page, category, sortValues) => {
   const { reviews, setReviews } = useContext(ReviewsContext);

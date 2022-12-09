@@ -5,7 +5,7 @@ import {
   patchReviewVotesDown,
   patchReviewVotesUp,
 } from "./api";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { VisualModeContext } from "./_context/VisualModeContext";
 
 const Votes = ({ type, review, comment, voteId }) => {
   //visual mode

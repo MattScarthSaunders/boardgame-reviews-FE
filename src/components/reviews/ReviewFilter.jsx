@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 
 const ReviewFilter = ({ setSortValues, sortValues }) => {
   //visual mode

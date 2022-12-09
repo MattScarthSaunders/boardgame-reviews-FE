@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getReview } from "../api";
 import Comments from "../comments/Comments";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 import Votes from "../Votes";
 
 const Review = () => {

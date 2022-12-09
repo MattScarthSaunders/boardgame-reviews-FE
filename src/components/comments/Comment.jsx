@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { deleteComment } from "../api";
-import { UserContext } from "../context/UserContext";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { UserContext } from "../_context/UserContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 import Votes from "../Votes";
 
 const Comment = ({ comment, index, setComments }) => {

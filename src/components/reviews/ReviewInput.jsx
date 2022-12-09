@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { postReview } from "../api";
-import { CategoryContext } from "../context/CategoryContext";
-import { ReviewsContext } from "../context/ReviewsContext";
-import { UserContext } from "../context/UserContext";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { CategoryContext } from "../_context/CategoryContext";
+import { ReviewsContext } from "../_context/ReviewsContext";
+import { UserContext } from "../_context/UserContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 import DeleteItem from "./DeleteReview";
 
 const ReviewInput = () => {

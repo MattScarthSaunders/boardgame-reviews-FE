@@ -2,8 +2,8 @@ import userEvent from "@testing-library/user-event";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Categories from "./Categories";
-import { UserContext } from "./context/UserContext";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { UserContext } from "./_context/UserContext";
+import { VisualModeContext } from "./_context/VisualModeContext";
 
 const Nav = () => {
   //visual mode

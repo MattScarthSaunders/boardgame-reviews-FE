@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 import DeleteItem from "../reviews/DeleteReview";
 
 const UserReview = ({ review, setUserReviews }) => {

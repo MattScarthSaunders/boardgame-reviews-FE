@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCategories } from "./api";
-import { CategoryContext } from "./context/CategoryContext";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { CategoryContext } from "./_context/CategoryContext";
+import { VisualModeContext } from "./_context/VisualModeContext";
 
 const Categories = () => {
   //visual mode

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { VisualModeContext } from "./components/context/VisualModeContext";
+import { VisualModeContext } from "./components/_context/VisualModeContext";
 import Header from "./components/Header";
 import Review from "./components/reviews/Review";
 import ReviewInput from "./components/reviews/ReviewInput";

@@ -1,6 +1,6 @@
 import { useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { VisualModeContext } from "./context/VisualModeContext";
+import { VisualModeContext } from "./_context/VisualModeContext";
 import Nav from "./Nav";
 
 const Header = () => {

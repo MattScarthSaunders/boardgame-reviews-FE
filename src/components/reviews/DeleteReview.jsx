@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { deleteReview } from "../api";
-import { ReviewsContext } from "../context/ReviewsContext";
-import { UserContext } from "../context/UserContext";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { ReviewsContext } from "../_context/ReviewsContext";
+import { UserContext } from "../_context/UserContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 
 const DeleteItem = ({
   review,

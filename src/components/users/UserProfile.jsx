@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { VisualModeContext } from "../context/VisualModeContext";
-import { useUsername } from "../hooks/useUsername";
+import { VisualModeContext } from "../_context/VisualModeContext";
+import { useUsername } from "../_hooks/useUsername";
 import UserReview from "./UserReview";
 
 const UserProfile = () => {

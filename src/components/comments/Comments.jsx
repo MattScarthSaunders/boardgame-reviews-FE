@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { getCommentsByReview } from "../api";
 import Comment from "./Comment";
 import CommentInput from "./CommentInput";
-import { VisualModeContext } from "../context/VisualModeContext";
+import { VisualModeContext } from "../_context/VisualModeContext";
 
 const Comments = ({ review_id }) => {
   //visual mode
