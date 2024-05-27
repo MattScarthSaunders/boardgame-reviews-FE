@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const reviewsAPI = axios.create({
-  baseURL: "https://boardgame-reviews.cyclic.app/api",
+  baseURL: "https://boardgame-reviews-jwso.onrender.com/api",
 });
 
 export const getReviews = (
